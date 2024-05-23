@@ -16,7 +16,7 @@ function createRandomCard()
   let color = "";
   let shape = "";
   let shading = "";
-  let rng = Math.floor((Math.random() * 3) + 1); // rng integer of inclusive 1-3 gotten from w3 schools  
+  let rng = Math.floor((Math.random() * 3) + 1); // rng integer of inclusive 1-3, gotten from w3 schools  
 
   // assign random color
   if (rng == 1)
@@ -58,7 +58,7 @@ function createRandomCard()
   let card = {
     shape: shape,
     color: color,
-    shading: shading, // rng integer of inclusive 1-2 gotten from w3 schools 
+    shading: shading, // rng integer of inclusive 1-2, gotten from w3 schools 
     number: Math.floor((Math.random() * 3) + 1), // rng integer of inclusive 1-3, gotten from w3 schools 
   };  
 
