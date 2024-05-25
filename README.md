@@ -1,1 +1,1 @@
-I created two saveScore functions since I wasn't too sure what my function is supposed to do. Hopefully one of them is right and we can delete the other one. 
+The Color function will manage the colors of the cards in the game
