@@ -1,1 +1,1 @@
-The Color function will manage the colors of the cards in the game
+The Number function will manage the numbers on the cards in the game.
