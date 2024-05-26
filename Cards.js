@@ -64,3 +64,18 @@ function createRandomCard()
 
   return card;
 }
+
+function checkIfSet(card1, card2, card3)
+{
+  let shape = checkShape(card1, card2, card3);
+  let color = checkColor(card1, card2, card3);
+  let shading = checkShading(card1, card2, card3);
+  let number = checkNumber(card1, card2, card3);
+  let isSet = false;
+  if (shape == true && color == true && shading == true && number == true)
+  {
+    isSet = true;
+  }
+
+  return isSet;
+}
