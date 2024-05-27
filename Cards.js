@@ -79,3 +79,31 @@ function checkIfSet(card1, card2, card3)
 
   return isSet;
 }
+
+function generateCardsWithSets(setsNum, cardCount)
+{
+  let setsCount = 0;
+  let cardsDealt = dealCards(cardCount);
+  while (setCount != setsNum)
+  {
+    cardsDealt = dealCards(cardCount);
+
+    // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
+    for (int i = 0; i < cardCount; i++)
+    {
+      for (int j = 0; j < cardCount; j++)
+      {
+        for (int k = 0; k < cardCount; k++)
+        {
+          if (checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k]))
+          {
+            setsCount++;
+          }
+        } 
+      }
+    }
+    
+  }
+  
+  return cardsDealt;
+}
