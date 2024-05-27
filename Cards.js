@@ -30,6 +30,7 @@ function createRandomCard()
     color = "green";
   }
 
+  rng = Math.floor((Math.random() * 3) + 1); // recalculates rng to each time so that an rng of 3 wont be 3 for all of them.
   // assign random shape
   if (rng == 1)
   {
@@ -42,16 +43,18 @@ function createRandomCard()
     shape = "curve";
   }
 
+  rng = Math.floor((Math.random() * 3) + 1); // addition to the above comment
   // assign random shading
   if (rng == 1)
   {
     shading = "filled";
   } else if (rng == 2)
   {
-    shape = "dashed";
+    
+    shading = "dashed"; //fixed typo
   } else if (rng == 3)
   {
-    shape = "none";
+    shading = "none"; //fixed typo
   }
 
   // create card object
