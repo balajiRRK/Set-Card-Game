@@ -1,11 +1,27 @@
-function dealCards(cardsNum)
+function dealCardsWithoutDuplicates(cardsNum)
 {
   let cardsDealt = [];
   
-  // creates random cards based off cardNum function argument and adds them to array
-  for (let i = 0; i < cardsNum; i++)
+  // creates random cards based off cardNum function argument and adds them to array if they are not a duplicate
+  for (let i = 0; i < cardsDealt.length; i++)
   {
-    cardsDealt.push(createRandomCard());
+    let card = createRandomCard();
+    let duplicate = false;
+
+    // check if there is a duplicate card in cardsDealt array
+    for (let j = 0; j < cardsDealt.length; j++)
+    {
+      if (_.isEqual(card, cardsDealt[i]))
+      {
+        duplicate = true;
+      }
+    }
+
+    // add to cardsDealt array if not duplicate
+    if (!duplicate)
+    {
+      cardsDealt.push(card);
+    }
   }
 
   return cardsDealt;
