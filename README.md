@@ -1,1 +1,1 @@
-I created two saveScore functions since I wasn't too sure what my function is supposed to do. Hopefully one of them is right and we can delete the other one. 
+This is the interactive implementation of the Game of Set's opening pages. It includes a title page, player selection interface, and instructions for how to play.
