@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Set</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="title-page" class="page">
+        <div class="container">
+            <h1>GAME OF SET</h1>
+            <p class="fade-text">Click anywhere to start</p>
+        </div>
+    </div>
+
+    <div id="player-selection" class="page hidden">
+        <h2>Choose Number of Players</h2>
+        <div class="player-options">
+            <button class="player-button" onclick="selectPlayers(1)">1</button>
+            <button class="player-button" onclick="selectPlayers(2)">2</button>
+            <button class="player-button" onclick="selectPlayers(3)">3</button>
+            <button class="player-button" onclick="selectPlayers(4)">4</button>
+        </div>
+    </div>
+
+    <div id="instructions-page" class="page hidden">
+        <button class="exit-button" onclick="goBack()">✖ Exit</button>
+        <h1>Instructions</h1>
+        <div class="instructions" id="player-instructions"></div>
+        <div class="instruction-container">
+            <div>
+                <ul id="game-instructions">
+                    <li>The goal of the game is to find all possible sets of three cards where each card's features are either all the same or all different.</li>
+                    <li>A set consists of three cards in which each of the cards' features (number, shape, shading, and color) are either all the same or all different.</li>
+                    <li>To select a set, press the corresponding keys for the three cards and confirm your selection by pressing "Enter".</li>
+                </ul>
+            </div>
+            <div class="bt-container">
+                <button class="bt-start">Start</button>
+                <button class="bt-restart">Restart</button>
+            </div>
+        </div>
+
+        <h2>Have Fun!</h2>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
