@@ -1,1 +1,0 @@
-ColorandNumber.js is a JavaScript module designed to handle functionalities related to colors and numbers. This module provides a set of utilities for managing and manipulating color values and numerical data, making it a versatile tool for the team working on projects involving visual elements and numerical operations.

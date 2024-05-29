@@ -1,0 +1,242 @@
+body {
+    font-family: 'Permanent Marker', cursive;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(rgba(14, 14, 14, 0.671),
+    rgba(5, 11, 37, 0.527)),url(https://images.pexels.com/photos/347139/pexels-photo-347139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    height: 95vh;
+    max-height: 95vh;
+  
+}
+
+.hidden {
+    display: none;
+}
+
+#title-page {
+    cursor: pointer;
+    height: 100%;
+    width: 100vw;
+}
+
+
+#title-page p {
+    animation: dimming 1500ms infinite;
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #fff; /* Adjust color as needed */
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+@keyframes dimming {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+ul {
+    padding: 0;
+    text-align: left;
+}
+
+
+.exit-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #ffcccc;
+    color: black;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.exit-button:hover {
+    background-color: #fd7979;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.container h1 {
+    font-size: 7rem;
+    margin-bottom: 15vh;
+}
+
+.container p {
+    font-size: 2.2rem;
+}
+
+#player-selection h2 {
+    font-size: 5rem;
+    margin-bottom: 15vh;
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 3.5rem;
+        margin-bottom: 10vh;
+    }
+
+    #player-selection h2 {
+        font-size: 2.3rem;
+        margin-bottom: 10vh;
+    }
+
+    .container p {
+        font-size: 1.2rem;
+    }
+
+    .player-button {
+        padding: 10px 15px;
+        font-size: 22px;
+    }
+
+    .player-options {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #instructions-page h1 {
+        font-size: 3rem;
+    }
+
+    .instruction-container{
+        flex-direction: column;
+    }
+    .instruction-container{
+        width: 100%;
+    }
+    
+    .bt-container{
+        width: 100%;
+    }
+   
+}
+
+.player-options {
+    display: flex;
+    gap: 52px;
+}
+
+.player-button {
+    padding: 35px 45px;
+    font-size: 40px;
+    cursor: pointer;
+    background-color: #e0e0ff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.player-button:hover {
+    background-color: #c0c0ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#instructions-page{
+    width: 100vw;
+}
+
+#instructions-page h1 {
+    font-size: 4rem;
+}
+
+li{
+    margin-bottom: 8px;
+    font-size: large;
+    font-style: italic;
+}
+
+.instruction-container{
+    display: flex;
+    gap: 5%;
+    width: 75%;
+    justify-content: space-between;
+}
+
+
+.instructions{
+width: 70%;
+}
+
+#game-instructions{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+
+    color: white;
+}
+   
+
+.bt-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+/* Button styling */
+.bt-start, .bt-restart {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bt-start {
+    background-color: #28a745; /* Green */
+}
+
+.bt-start:hover {
+    background-color: #218838; /* Darker green */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bt-restart {
+    background-color: #007bff; /* Blue */
+}
+
+.bt-restart:hover {
+    background-color: #0056b3; /* Darker blue */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
