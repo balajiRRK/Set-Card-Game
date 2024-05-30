@@ -108,11 +108,11 @@ function generateCardsWithSets(setsNum, cardCount)
     cardsDealt = dealCards(cardCount);
 
     // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
-    for (int i = 0; i < cardCount; i++)
+    for (let i = 0; i < cardCount; i++)
     {
-      for (int j = 0; j < cardCount; j++)
+      for (let j = 0; j < cardCount; j++)
       {
-        for (int k = 0; k < cardCount; k++)
+        for (let k = 0; k < cardCount; k++)
         {
           if (checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k]))
           {
