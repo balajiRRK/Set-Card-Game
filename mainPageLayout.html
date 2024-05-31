@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game of Set</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="StopWatch.js"></script>
+    <script type="text/javascript" src="saveScore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -24,13 +26,17 @@
         <div class = "right-section">
             <div class="stopwatch">
                 <h2>Stopwatch</h2>
-                <script src="StopWatch.js"></script>
+                <!--<script type="text/javascript" src="StopWatch.js"></script>-->
+            </div>
+            <div class="countdown">
+                <h2>Countdown</h2>
+                <p onkeyup=""></p>
             </div>
             <div class="scoreboard">
                 <h2>Scoreboard</h2>
                 <p>Player 1: <span id="player1-score"></span></p>
                 <p>Player 2: <span id="player2-score"></span></p>
-                <script src="saveScore.js"></script>
+                <!-- <script type="text/javascript" src="saveScore.js"></script> -->
             </div>
             <div class="instructions">
                 <div class="button">Instructions</div>
@@ -38,8 +44,15 @@
             </div>
         </div>
     </div>
-    
+
     <script>
+        var scoreboard;
+        const playerKeys = ['A', 'L', 'H', 'K'];
+        function initializeScore(){
+            scoreboard = new Array(players.length).fill(0);
+        }
+        var stopwatch;
+
         // Function to generate 27 rows in the matches table
         function generateMatchesTable() {
             const tableBody = document.querySelector('#matches-table tbody');
@@ -50,8 +63,22 @@
                 row.appendChild(cell);
                 tableBody.appendChild(row);
             }
+            stopwatch = Stopwatch('+', 0); 
+            setInterval(function(){
+                console.log(stopwatch.time);
+            },1000);
         }
         document.addEventListener('DOMContentLoaded', generateMatchesTable);
+        document.addEventListener('GameStop', function(e){
+            pauseTimer(stopwatch);
+        })
+
+        document.addEventListener('keyup', (e) => {
+            var playerIndex = playerKeys.indexOf(e.code);
+            if (playerIndex !== -1) {
+                scoreKeeping(scoreboard, playerIndex); 
+            }
+        });
 
         function diffultyMode(difficulty){
             const gameGrid = document.getElementById('game-grid');
@@ -79,6 +106,9 @@
             } else if (numberOfCards === 24) {
                 gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
             }
+        }
+
+        function scoreboardPlayer(){
 
         }
     </script>

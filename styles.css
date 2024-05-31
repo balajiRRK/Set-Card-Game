@@ -1,16 +1,28 @@
 body {
+    font-family: 'Permanent Marker', cursive;
     margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
     background-image: linear-gradient(rgba(14, 14, 14, 0.671),
     rgba(5, 11, 37, 0.527)),url(https://images.pexels.com/photos/347139/pexels-photo-347139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+@keyframes dimming {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .container {
     display: grid;
@@ -29,7 +41,7 @@ body {
     justify-content: flex-start;
     align-items: center;
 }
-.matches, .scoreboard, .stopwatch, .instructions {
+.matches, .scoreboard, .countdown, .stopwatch, .instructions {
     border: 1px solid #000;
     padding: 10px;
     text-align: center;
@@ -38,7 +50,7 @@ body {
 .matches {
     width: 100%;
 }
-.stopwatch, .scoreboard {
+.stopwatch, .countdown, .scoreboard {
     width: 100%; 
     margin-top: 10px;
 }
