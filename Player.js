@@ -4,14 +4,16 @@ Adds player to the list of players
 function addToPlayerList(player, players){
     players.push(player);
 }
-function Player(playerNum){
-    this.player = playerNum;
-    this.setFound = [];
-    this.score =0;
-    this.correct=0; // in case we want to add statistics for correctness/
-    this.incorrect=0;
+class Player {
+    constructor(playerNum) {
+        this.player = playerNum;
+        this.setFound = [];
+        this.score = 0;
+        this.correct = 0; // in case we want to add statistics for correctness/
+        this.incorrect = 0;
 
-    
+
+    }
 }
 /*
 The list of players is cleared.
