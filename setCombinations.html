@@ -4,6 +4,7 @@
     <title>Set combinations</title>
     <script type="text/javascript" src="Player.js"></script>
     <script type="text/javascript" src="Cards.js"></script>
+    <script defer type="text/javascript" src="cardGraphic.js"></script>
 
 </head>
 
@@ -12,6 +13,13 @@
 
     <button id="addset"> add to set </button>
 
+    <canvas id="card">
+        <p>Add suitable fallback here.</p>
+        <canvas id="symbol">
+            <p>Add suitable fallback here.</p>
+          </canvas>
+      </canvas>
+      
 
     <div class="setCombinations">
         <!-- I will implement a total set found and a set found for each player if we want to show that too as a option -->
@@ -50,9 +58,16 @@
     });
 
     // this is a test for the full version where instead of the text of the properties of the card will be shown, the actual card will be shown instead
+    // document.getElementById("addset").addEventListener("click", () => {
+    //     document.getElementById("sets").innerHTML+= "<li>"+ cardtostring(list[0].setFound[list[0].setFound.length-1][0]) +" "
+    //         +cardtostring(list[0].setFound[list[0].setFound.length-1][1])+" "+cardtostring(list[0].setFound[list[0].setFound.length-1][2])+ " </li>";
+    // });
+
     document.getElementById("addset").addEventListener("click", () => {
-        document.getElementById("sets").innerHTML+= "<li>"+ cardtostring(list[0].setFound[list[0].setFound.length-1][0]) +" "
-            +cardtostring(list[0].setFound[list[0].setFound.length-1][1])+" "+cardtostring(list[0].setFound[list[0].setFound.length-1][2])+ " </li>";
+        
+        detectCard(list[0].setFound[list[0].setFound.length-1][0]);
+            detectCard(list[0].setFound[list[0].setFound.length-1][1]);
+            detectCard(list[0].setFound[list[0].setFound.length-1][2]);
     });
     // console.log(list[0].setFound[0][0]);
     // console.log(list[0].setFound[0][1]);
@@ -62,6 +77,9 @@
         return card.number +" "+card.color+" "+card.shape+" "+card.shading
    
   };  
+  function showCard(card){
+
+  }
 
 </script>
 
