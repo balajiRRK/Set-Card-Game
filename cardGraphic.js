@@ -3,137 +3,196 @@ const CARDHEIGHT = 2.25;
 let scaleW= 100;
 let scaleH = 100;
 const canvas = document.getElementById("card");
-const width = (canvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth));
-const height = (canvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight));
-
-const ctx = canvas.getContext("2d");
-
-ctx.fillStyle = "gray"; // color of the card
-ctx.fillRect(0, 0, width, height);
-card = "red"
-
-// Oval https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse
-let shape = new Path2D();
-color="red";
-
-const patternCanvas = document.createElement("canvas");
-const patternContext = patternCanvas.getContext("2d");
-
-// Give the pattern a width and height of 50
-patternCanvas.width = 5;
-patternCanvas.height = 5;
-
-// Give the pattern a background color and draw an arc
-patternContext.fillStyle = "white";
-patternContext.fillRect(0, 0, patternCanvas.width, patternCanvas.height);
-// patternContext.arc(0, 0, 50, 0, 0.5 * Math.PI);
-patternContext.moveTo(0,2);
-patternContext.lineTo(5,2);
-patternContext.lineWidth = 1;
-patternContext.strokeStyle ="purple";
-patternContext.stroke();
-
-// Create our primary canvas and fill it with the pattern
 
 
-const pattern = ctx.createPattern(patternCanvas, "repeat");
-ctx.fillStyle = pattern;
+// const ctx = canvas.getContext("2d");
 
+// ctx.fillStyle = "gray"; // color of the card
+// ctx.fillRect(0, 0, width, height); // making the card
+
+
+//Path2D https://developer.mozilla.org/en-US/docs/Web/API/Path2D
+// let shape = new Path2D();
+
+
+// drawOval();
+// drawDiamond(shape,0);
+
+
+// ctx.fill(shape);
+// numerousShapeGenerator(2,shape,ctx);
+// stripeShape("blue",shape,ctx);
 // ctx.fillStyle = "red ";
-ctx.strokeStyle = "purple";
-ctx.stroke();
-drawOval();
+
 // shape2 = shape.trans
 // shadeShape(ctx,shape);
 // ctx.stroke(shape);
 // stripeShape(shape,ctx);
-ctx.fill(shape);
+
 // ctx.stroke(shape);
 // ctx.beginPath();
-ctx.ellipse(canvas.width/2+50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-ctx.ellipse(canvas.width/2-50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
+// ctx.ellipse(canvas.width/2+50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
+// ctx.ellipse(canvas.width/2-50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
 // ctx.fill();
 // ctx.stroke();
 
 
 // ctx.fill();
 
-
-/*
-// Diamond
-ctx.strokeStyle = "purple";
-ctx.beginPath();
-const triHeight = canvas.height/2 * Math.tan(degToRad(60));
-ctx.moveTo((canvas.width/2),canvas.height-triHeight);
-ctx.lineTo((canvas.width/2)-canvas.width/8, canvas.height/2);
-ctx.lineTo((canvas.width/2), triHeight-(canvas.height/40));
-
-
-//symmetry
-ctx.moveTo((canvas.width/2),canvas.height-triHeight);
-ctx.lineTo((canvas.width/2)+canvas.width/8, canvas.height/2);
-ctx.lineTo((canvas.width/2), triHeight-(canvas.height/40));
-ctx.stroke();
-*/
-
-// Curve
-// ctx.arc(canvas.width/2, canvas.height/2, 50, degToRad(0), degToRad(360), false);
-// ctx.beginPath();
-// ctx.moveTo(canvas.width/2-20, canvas.height/8);
-// ctx.quadraticCurveTo(canvas.width/2+35, canvas.height/4, (canvas.width/2)+10, canvas.height/2);
-// ctx.quadraticCurveTo((canvas.width/2)-35, canvas.height/2, canvas.height-(canvas.width/12)+10, canvas.height-canvas.height/6);
-
-// //ctx.quadraticCurveTo((canvas.width/2)+35, canvas.height/2+44, canvas.height-(canvas.width/12)-1, canvas.height-canvas.height/6);
-
-// ctx.quadraticCurveTo((canvas.width/2)-70, canvas.height/2,(canvas.width/2-20), (canvas.height/8)+40 );
-
-// ctx.quadraticCurveTo((canvas.width/2)+15, canvas.height/2,canvas.width/2-20, canvas.height/8 );
-// ctx.stroke(); 
-
-
+function detectCard(card){
+  const cardCanvas = document.createElement("canvas")
+  document.getElementById("sets").appendChild(cardCanvas);
+  cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
+  cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
+  const ctx = cardCanvas.getContext("2d");
+  
+let shape = new Path2D();
+  ctx.fillStyle = "gray"; // color of the card
+  ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
+  numerousShapeGenerator(card.number,shape,cardCanvas,card);
+  switch(card.shading){
+    case "none":
+      noneShape(shape,ctx,card,cardCanvas);
+    break;
+    case "dashed":
+      stripeShape(shape,ctx,card,cardCanvas);
+    break;
+    case "filled":
+      shadeShape(shape,ctx,card,cardCanvas);
+    break;
+  }
+  
  
-function numberOfShapes(number,shape){
-if(number ==3){
-
-}else if(number ==2){
-
-}
-
-}
-function shadeShape(ctx,shape){
-  ctx.fillStyle = color;
-  ctx.fill(shape);
-
-}
-function stripeShape(shape,ctx){
-  ctx.stroke(shape);
-  const stripes = document.createElement("canvas");
-  stripes.width = 2;
-  stripes.height = 2;
-  const stx = stripes.getContext("2d");
- 
-  stx.strokeStyle ="blue";
-  stx.lineTo(2,0);
-  stx.lineWidth =50;
-  stx.stroke();
-const stripe = ctx.createPattern(stripes,"repeat");
-ctx.fillStyle = stripe;
-
-ctx.fill(shape);
   
 
+
+}
+function drawDiamond(shape,offset,canvas){
+  
+  // Diamond
+  
+  // shape.beginPath();
+  const triHeight = canvas.height/2 * Math.tan(degToRad(60));
+  shape.moveTo((canvas.width/2)+offset,canvas.height-triHeight);
+  shape.lineTo(((canvas.width/2)-canvas.width/8)+offset, canvas.height/2);
+  shape.lineTo((canvas.width/2)+offset, triHeight-(canvas.height/40));
+  
+  
+  //symmetry
+  shape.moveTo((canvas.width/2)+offset,canvas.height-triHeight);
+  shape.lineTo(((canvas.width/2)+canvas.width/8)+offset, canvas.height/2);
+  shape.lineTo((canvas.width/2)+offset, triHeight-(canvas.height/40));
+  
+  // shape.stroke();
+  
+}
+
+function drawCurve(shape,offset,canvas){
+  // Curve
+  
+  // shape.beginPath();
+  // the following functions are used to create the curve shape
+  shape.moveTo(10+(canvas.width/2)-20+offset, canvas.height/8);
+  shape.quadraticCurveTo(10+(canvas.width/2)+35+offset, canvas.height/4, 10+(canvas.width/2)+10+offset, canvas.height/2);
+  shape.quadraticCurveTo(10+(canvas.width/2)-35+offset, canvas.height/2, 10+canvas.width-(canvas.width/2)+10+offset, canvas.height-canvas.height/6);
+  
+  //ctx.quadraticCurveTo((canvas.width/2)+35, canvas.height/2+44, canvas.height-(canvas.width/12)-1, canvas.height-canvas.height/6);
+  
+  shape.quadraticCurveTo(10+(canvas.width/2)-70+offset, canvas.height/2,10+(canvas.width/2)-20+offset, (canvas.height/8)+40 );
+  
+  shape.quadraticCurveTo(10+(canvas.width/2)+15+offset, canvas.height/2,10+(canvas.width/2)-20+offset, canvas.height/8 );
+  shape.closePath();
+  // ctx.stroke(); 
+}
+
+
+
+function stripeShape(shape,ctx,card){
+  const stripesCanvas = document.createElement("canvas");
+  const stripesContext = stripesCanvas.getContext("2d");
+  
+  // Give the pattern a width and height of 50
+  stripesCanvas.width = 5;
+  stripesCanvas.height = 5;
+  
+  // Give the pattern a background color and draw an arc
+  stripesContext.fillStyle = "rgba(0,0,0,0)";
+  stripesContext.fillRect(0, 0, stripesCanvas.width, stripesCanvas.height);
+  // patternContext.arc(0, 0, 50, 0, 0.5 * Math.PI);
+  stripesContext.moveTo(0,2);
+  stripesContext.lineTo(5,2);
+  stripesContext.lineWidth = 1;
+  stripesContext.strokeStyle =card.color;
+  stripesContext.stroke();
+  
+  // Create our primary canvas and fill it with the pattern
+  
+  
+  const pattern = ctx.createPattern(stripesCanvas, "repeat"); // repeates the striped pattern from above for filling it later
+  ctx.fillStyle = pattern;
+  ctx.strokeStyle = card.color;
+  ctx.stroke(shape);
+  ctx.fill(shape);
+}
+/*
+The glue (will make proper comments when done)
+*/
+function numerousShapeGenerator(number,shape,canvas,card){
+  // ctx.save();
+  // New path2d objects are created because just using shape will cause a issue for ellipse with more than one shape
+  let shape2 = new Path2D();
+  let shape3 = new Path2D();
+  if(number ==3){
+    drawShape(shape,canvas,card,0);
+  
+    drawShape(shape2,canvas,card,50);
+    
+    drawShape(shape3,canvas,card,-50);
+
+    shape.addPath(shape2);
+    shape.addPath(shape3);
+    
+  }else if(number ==2){
+    drawShape(shape,canvas,card,-25);
+    drawShape(shape2,canvas,card,25);
+    shape.addPath(shape2);
+  }else{
+    drawShape(shape,canvas,card,0);
+  }
+  
+}
+function drawShape(shape,canvas,card,offset){
+switch(card.shape){
+  case "diamond":
+  drawDiamond(shape,offset,canvas);
+  break;
+  case "curve":
+    drawCurve(shape,offset,canvas);
+  break;
+  case "oval":
+    drawOval(shape,offset,canvas);
+    break;
+}
+}
+
+
+
+function drawOval(shape,offset,canvas){
+  // Oval https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse
+  
+  shape.ellipse((canvas.width/2)+offset, canvas.height/2, 20, 45, Math.PI, 0, 2 * Math.PI);
+  
+
+}
+function noneShape(shape,ctx,card){
  
-
+  ctx.strokeStyle= card.color;
+  ctx.stroke(shape);
 }
 
-function drawOval(){
-// shape.beginPath();
-shape.ellipse(canvas.width/2, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-}
-
-function shader(shape){
-
-  shape.fill();
+function shadeShape(shape,ctx,card){
+  ctx.fillStyle = card.color;
+  ctx.fill(shape);
 }
 
 /*
