@@ -1,20 +1,28 @@
+
 function dealCardsWithoutDuplicates(cardsNum)
 {
+
   let cardsDealt = [];
   
+  
   // creates random cards based off cardNum function argument and adds them to array if they are not a duplicate
-  for (let i = 0; i < cardsDealt.length; i++)
-  {
-    let card = createRandomCard();
-    let duplicate = false;
+  for (let i = 0; i < cardsNum; i++)
+    {
+      
+      let card = createRandomCard();
+      let duplicate = false;
 
     // check if there is a duplicate card in cardsDealt array
     for (let j = 0; j < cardsDealt.length; j++)
     {
-      if (_.isEqual(card, cardsDealt[i]))
-      {
-        duplicate = true;
-      }
+      
+      
+        
+        if (equals(card,cardsDealt[j]))
+        {
+          duplicate = true;
+        }
+      
     }
 
     // add to cardsDealt array if not duplicate
@@ -23,7 +31,7 @@ function dealCardsWithoutDuplicates(cardsNum)
       cardsDealt.push(card);
     }
   }
-
+console.log(cardsDealt);
   return cardsDealt;
 }
 
@@ -79,9 +87,13 @@ function createRandomCard()
     color: color,
     shading: shading, // rng integer of inclusive 1-2, gotten from w3 schools 
     number: Math.floor((Math.random() * 3) + 1), // rng integer of inclusive 1-3, gotten from w3 schools 
+    
   };  
-
+  
   return card;
+}
+function equals(card,card2){
+  return card.shape==card2.shape && card.color==card2.color && card.shading == card2.shading && card.number == card2.number;
 }
 
 function checkIfSet(card1, card2, card3)

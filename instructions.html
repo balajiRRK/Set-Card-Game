@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Set</title>
+    <link rel="stylesheet" type="text/css" href="opening-style.css" />
+</head>
+
+<body>
+    <div id="instructions-page">
+        <button class="exit-button" onclick="goBack()">✖ Exit</button>
+        <h1>Instructions</h1>
+        
+        <div class="instructions" id="player-instructions"> </div>
+        
+        <div class="instruction-container">
+            <div>
+                <ul id="game-instructions">
+                    <li>The goal of the game is to find all possible sets of three cards where each card's features are either all the same or all different.</li>
+                    <li>A set consists of three cards in which each of the cards' features (number, shape, shading, and color) are either all the same or all different.</li>
+                    <li>To select a set, press the corresponding keys for the three cards and confirm your selection by pressing "Enter".</li>
+                </ul>
+            </div>
+            <div class="bt-container">
+                <button class="bt-start" onclick="startGame()"> Start </button>
+                <button class="bt-restart"> Restart </button>
+            </div>
+        </div>
+        
+        <h2>Have Fun!</h2>
+    </div>
+    
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // get playersNum value from call to html page change
+            const urlParams = new URLSearchParams(window.location.search);
+            const playersNum = parseInt(urlParams.get('playersNum'));
+
+            // Add instructions based off player count
+            const playerInstructions = document.getElementById('player-instructions');
+            playerInstructions.innerHTML = '';
+
+            const playerKeys = ['A', 'L', 'H', 'K'];
+            for (let i = 0; i < playersNum; i++) {
+                const p = document.createElement('p');
+                p.style.fontWeight = 'bold';
+                p.style.fontSize = '1.5em';
+                p.textContent = `Player ${i + 1} uses the "${playerKeys[i]}" key to select cards.`;
+                playerInstructions.appendChild(p);
+            }
+        })
+    </script>
+    
+    <script>
+        function goBack() {
+            window.location.href = 'playerCountSelection.html';
+        }
+    </script> 
+
+    <script>
+        function startGame() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const playersNum = parseInt(urlParams.get('playersNum'));
+
+            window.location.href = `mainPageLayout.html?playersNum=${playersNum}`;
+        }
+    </script>
+</body>
+</html>

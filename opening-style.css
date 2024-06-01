@@ -31,14 +31,14 @@ body {
     display: none;
 }
 
-#title-page {
+#home-page {
     cursor: pointer;
     height: 100%;
     width: 100vw;
 }
 
 
-#title-page p {
+#home-page p {
     animation: dimming 1500ms infinite;
     font-size: 1.5rem; /* Adjust size as needed */
     color: #fff; /* Adjust color as needed */
@@ -97,9 +97,15 @@ ul {
     font-size: 2.2rem;
 }
 
+<<<<<<< HEAD
 #difficulty-selection h2 {
     font-size: 5.5rem;
     margin-bottom: 15vh;
+=======
+#player-selection h2 {
+    font-size: 5rem;
+    margin-bottom: 30vh;
+>>>>>>> a88275145f4402e1346890ffc903b9ab026e39bc
 }
 
 @media (max-width: 768px) {
@@ -157,6 +163,7 @@ ul {
     background-color: #e0e0ff;
     border: 1px solid #000;
     border-radius: 5px;
+    margin: auto;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
@@ -167,10 +174,21 @@ ul {
 
 #instructions-page{
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    height: 95vh;
+    max-height: 95vh;
+    
 }
 
 #instructions-page h1 {
     font-size: 4rem;
+    
 }
 
 li{
