@@ -26,7 +26,9 @@ Increments the timer up by one, takes the Stopwatch object as a parameter.
 */
 function incInterval(Stopwatch){
     // let initial = Stopwatch.time;
-    Stopwatch.Interval= setInterval(function(){Stopwatch.time+=1},1000); // 1000 miliseconds as that is equal to one second.
+    Stopwatch.Interval= setInterval(function(){
+        Stopwatch.time+=1;
+    },1000); // 1000 miliseconds as that is equal to one second.
     console.log("the id is "+ Stopwatch.Interval); // for debugging 
 }
 /*
