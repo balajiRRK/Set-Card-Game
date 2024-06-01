@@ -38,7 +38,7 @@ function initializeScore(){
 
     const urlParams = new URLSearchParams(window.location.search);
     const playerNum = parseInt(urlParams.get('playerNum'));
-    playerScoresContainer.innerHTML = '';
+    // playerScoresContainer.innerHTML = '';
 
     //const playerScoresContainer = document.getElementById('player-scores');
     // Clear any existing content
@@ -50,11 +50,11 @@ function initializeScore(){
         playerScoresContainer.appendChild(listItem);
     } */
 
-    playerNum.forEach(player => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${player}: 0`;
-        playerScoresContainer.appendChild(listItem);
-    });
+    // playerNum.forEach(player => {
+    //     const listItem = document.createElement('li');
+    //     listItem.textContent = `${player}: 0`;
+    //     playerScoresContainer.appendChild(listItem);
+    // });
 }
 
 
