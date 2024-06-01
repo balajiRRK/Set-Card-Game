@@ -13,17 +13,6 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-@keyframes dimming {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 .container {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
