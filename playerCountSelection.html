@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Set</title>
+    <link rel="stylesheet" type="text/css" href="opening-style.css" />
+</head>
+
+<body>
+    <div id="player-selection">
+        <h2>Choose Number of Players</h2>
+        <div class="player-options">
+            <button class="player-button" onclick="selectPlayers(1)">1</button>
+            <button class="player-button" onclick="selectPlayers(2)">2</button>
+            <button class="player-button" onclick="selectPlayers(3)">3</button>
+            <button class="player-button" onclick="selectPlayers(4)">4</button>
+        </div>
+    </div>
+
+    <script> 
+        function selectPlayers(playersNum) {
+            window.location.href = `instructions.html?playersNum=${playersNum}`;
+        }
+    </script>
+</body>
