@@ -6,7 +6,7 @@ let playerList = [];
 let player =4;
 
 addPlayerToGame(player,playerList);
-initializeScore(playerList);
+initializeScore();
 diffultyMode("normal");
 
 // gneration of the cards
@@ -27,19 +27,37 @@ while (i<cardsInPlay.length){
     i++;
 }
 
-
-
 function addPlayerToGame(numOfPlayers,playerList){
     while(playerList.length<numOfPlayers ){
     addToPlayerList(numOfPlayers, playerList);
     }
 }
 
+function initializeScore(){
+    //scoreboard = new Array(playerList.length).fill(0);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const playerNum = parseInt(urlParams.get('playerNum'));
+    playerScoresContainer.innerHTML = '';
 
-function initializeScore(playerList){
-    scoreboard = new Array(playerList.length).fill(0);
+    //const playerScoresContainer = document.getElementById('player-scores');
+    // Clear any existing content
+
+    // Loop through the players array and create a list item for each player
+    /*for(let i = 0; i < playerNum; i ++){
+        const listItem = document.createElement('li');
+        listItem.textContent = `${player}: 0`;
+        playerScoresContainer.appendChild(listItem);
+    } */
+
+    playerNum.forEach(player => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${player}: 0`;
+        playerScoresContainer.appendChild(listItem);
+    });
 }
+
+
 var stopwatch;
 
 // Function to generate 27 rows in the matches table
@@ -96,4 +114,8 @@ function diffultyMode(difficulty){
     } else if (numberOfCards === 24) {
         gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
     }
+}
+
+function restartGame(){
+    window.location.href = 'opening-index.html';
 }

@@ -87,6 +87,10 @@ body {
     color: #fff;
     cursor: pointer;
 }
-.restart{
-    color: red; 
+.red-button{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
 }
