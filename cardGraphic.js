@@ -39,9 +39,10 @@ const canvas = document.getElementById("card");
 
 // ctx.fill();
 
-function detectCard(card){
+function detectCard(card,id){
   const cardCanvas = document.createElement("canvas")
-  document.getElementById("sets").appendChild(cardCanvas);
+  document.getElementById(id+1).appendChild(cardCanvas);
+  console.log("card id is "+id);
   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
   const ctx = cardCanvas.getContext("2d");

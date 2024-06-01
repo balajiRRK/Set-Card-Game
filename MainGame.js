@@ -7,7 +7,25 @@ let player =4;
 
 addPlayerToGame(player,playerList);
 initializeScore(playerList);
-difficulty("normal");
+diffultyMode("normal");
+
+// gneration of the cards
+let cards = dealCardsWithoutDuplicates(81);
+// Maybe make  a shuffle function to mix up the cards in the array later
+let cardsInPlay = cards.slice(0,12);
+
+
+let i =0;
+
+while (i<cardsInPlay.length){
+   
+    const card = document.getElementById(i+1);
+
+    card.setAttribute =cardsInPlay[i];
+    detectCard(cardsInPlay[i],i);
+
+    i++;
+}
 
 
 
@@ -34,9 +52,9 @@ function generateMatchesTable() {
         row.appendChild(cell);
         tableBody.appendChild(row);
     }
-    stopwatch = Stopwatch('+', 0); 
+    stopwatch = new Stopwatch('+', 0); 
     setInterval(function(){
-        console.log(stopwatch.time);
+        document.getElementById("timer").innerHTML= stopwatch.time;
     },1000);
 }
 document.addEventListener('DOMContentLoaded', generateMatchesTable);
