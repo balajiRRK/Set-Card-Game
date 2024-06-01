@@ -3,15 +3,17 @@ const playerKeys = ['A', 'L', 'H', 'K'];
 
 // creating the players
 let playerList = [];
-let player =4;
+let player =1;
+let set = [];
+let click =0;
 
 addPlayerToGame(player,playerList);
-initializeScore();
+// initializeScore();
 diffultyMode("normal");
 
 // gneration of the cards
 let cards = dealCardsWithoutDuplicates(81);
-// Maybe make  a shuffle function to mix up the cards in the array later
+
 let cardsInPlay = cards.slice(0,12);
 
 
@@ -23,8 +25,12 @@ while (i<cardsInPlay.length){
 
     card.setAttribute =cardsInPlay[i];
     detectCard(cardsInPlay[i],i);
+    const can =card.getElementsByTagName("canvas");
+    // console.log(can.item(0));
+    // card.onclick = () => cellClicked(can.item(0).getAttribute("color"));
 
-    i++;
+    i++;    
+    card.onclick = () => cellClicked(can.item(0),set);
 }
 
 function addPlayerToGame(numOfPlayers,playerList){
@@ -103,7 +109,7 @@ function diffultyMode(difficulty){
         const card = document.createElement('div');
         card.className = 'game-cell';
         card.setAttribute("id",i);
-        card.onclick = () => cellClicked(i);
+        
         gameGrid.appendChild(card);
     }
 
@@ -113,7 +119,54 @@ function diffultyMode(difficulty){
         gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
     }
 }
+function cellClicked(card,set){
+    setCard= reforgeCard(card);
+    
+    // console.log("the color of the reforged card "+setCard.color);
+    
+    console.log("The inset is "+isInSet(set,setCard));
+    if(  isInSet(set,setCard)==false && set.length<3 ){
+        set.push(setCard);
+        // console.log("here")
+    }else if(isInSet(set,setCard)){
+        console.log("select another card")
+    }
+    // console.log(set.length);
 
+    if (set.length ==3){
+        console.log("Checking cards");
+        console.log(checkIfSet(set[0],set[1],set[2]));
+        console.log("end check")
+       if( checkIfSet(set[0],set[1],set[2])){
+        // add to set found section
+       }
+       set.length=0;
+        
+        
+    }
+
+}
+function isInSet(set,card){
+    let inSet =false;
+    // console.log("isInSet test");
+    for(let i=0;i<set.length;i++){
+        // console.log(set[i].color+" "+ card.color);
+        // console.log(set[i].color ==card.color);
+        inSet= inSet|| equals(set[i],card);
+    }
+    // console.log("end of isInSet test");
+    return inSet;
+}
+function reforgeCard(card){
+    let forgedCard = createRandomCard();
+    forgedCard.color =card.getAttribute("color");
+    forgedCard.shape =card.getAttribute("shape");
+    forgedCard.shading =card.getAttribute("shading");
+    forgedCard.number =card.getAttribute("number");
+    // console.log("In reforge func "+forgedCard.color);
+    // console.log(equals(forgedCar))
+    return forgedCard;
+}
 function showInstructions(){
     window.location.href = 'instructions.html';
 }
