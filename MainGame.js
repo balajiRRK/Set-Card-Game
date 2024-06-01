@@ -117,5 +117,5 @@ function diffultyMode(difficulty){
 }
 
 function restartGame(){
-    window.location.href = 'opening-index.html';
+    window.location.href = 'home.html';
 }
