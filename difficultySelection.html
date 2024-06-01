@@ -9,13 +9,12 @@
 </head>
 
 <body>
-    <div id="player-selection">
-        <h2>Choose Number of Players</h2>
+    <div id="difficulty-selection" class="page hidden">
+        <h2> Select Difficulty Mode: </h2>
         <div class="player-options">
-            <button class="player-button" onclick="selectPlayers(1)">1</button>
-            <button class="player-button" onclick="selectPlayers(2)">2</button>
-            <button class="player-button" onclick="selectPlayers(3)">3</button>
-            <button class="player-button" onclick="selectPlayers(4)">4</button>
+            <button class="difficulty-button" onclick="selectDifficulties('Easy')">Easy</button>
+            <button class="difficulty-button" onclick="selectDifficulties('Normal')">Normal</button>
+            <button class="difficulty-button" onclick="selectDifficulties('Hard')">Hard</button>
         </div>
     </div>
 
