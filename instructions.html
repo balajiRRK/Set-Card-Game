@@ -13,7 +13,7 @@
         <button class="exit-button" onclick="goBack()">✖ Exit</button>
         <h1>Instructions</h1>
         
-        <div class="instructions" id="player-instructions"> </div>
+        <div class="instructions" id="difficulty-instructions"> </div>
         
         <div class="instruction-container">
             <div>
@@ -35,37 +35,37 @@
     <script> 
         document.addEventListener('DOMContentLoaded', function() {
             
-            // get playersNum value from call to html page change
+            // get difficulty value from call to html page change
             const urlParams = new URLSearchParams(window.location.search);
-            const playersNum = parseInt(urlParams.get('playersNum'));
+            const difficulty = urlParams.get('difficulty');
 
             // Add instructions based off player count
-            const playerInstructions = document.getElementById('player-instructions');
-            playerInstructions.innerHTML = '';
+            const difficultyInstructions = document.getElementById('difficulty-instructions');
+            difficultyInstructions.textContent = `Difficulty: ${difficulty}`;
 
             const playerKeys = ['A', 'L', 'H', 'K'];
-            for (let i = 0; i < playersNum; i++) {
+            for (let i = 0; i < difficulty; i++) {
                 const p = document.createElement('p');
                 p.style.fontWeight = 'bold';
                 p.style.fontSize = '1.5em';
                 p.textContent = `Player ${i + 1} uses the "${playerKeys[i]}" key to select cards.`;
-                playerInstructions.appendChild(p);
+                difficultyInstructions.appendChild(p);
             }
         })
     </script>
     
     <script>
         function goBack() {
-            window.location.href = 'playerCountSelection.html';
+            window.location.href = 'difficultySelection.html';
         }
     </script> 
 
     <script>
         function startGame() {
             const urlParams = new URLSearchParams(window.location.search);
-            const playersNum = parseInt(urlParams.get('playersNum'));
+            const difficulty = parseInt(urlParams.get('difficulty'));
 
-            window.location.href = `mainPageLayout.html?playersNum=${playersNum}`;
+            window.location.href = `mainPageLayout.html?difficulty=${difficulty}`;
         }
     </script>
 </body>
