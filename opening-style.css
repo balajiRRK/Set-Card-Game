@@ -97,15 +97,9 @@ ul {
     font-size: 2.2rem;
 }
 
-<<<<<<< HEAD
 #difficulty-selection h2 {
     font-size: 5.5rem;
     margin-bottom: 15vh;
-=======
-#player-selection h2 {
-    font-size: 5rem;
-    margin-bottom: 30vh;
->>>>>>> a88275145f4402e1346890ffc903b9ab026e39bc
 }
 
 @media (max-width: 768px) {
