@@ -1,14 +1,14 @@
 document.getElementById('title-page').addEventListener('click', function() {
-    showPage('player-selection');
+    showPage('difficulty-selection');
 });
 
-function selectPlayers(numPlayers) {
-    generateInstructions(numPlayers);
+function selectDifficulties(dificultyLevel) {
+    generateInstructions(dificultyLevel);
     showPage('instructions-page');
 }
 
 function goBack() {
-    showPage('player-selection');
+    showPage('difficulty-selection');
 }
 
 function showPage(pageId) {
@@ -22,12 +22,12 @@ function showPage(pageId) {
     });
 }
 
-function generateInstructions(numPlayers) {
+function generateInstructions(dificultyLevel) {
     const playerInstructions = document.getElementById('player-instructions');
     playerInstructions.innerHTML = '';
 
     const playerKeys = ['A', 'L', 'H', 'K'];
-    for (let i = 0; i < numPlayers; i++) {
+    for (let i = 0; i < dificultyLevel; i++) {
         const p = document.createElement('p');
         p.style.fontWeight = 'bold';
         p.style.fontSize = '1.5em';

@@ -97,8 +97,8 @@ ul {
     font-size: 2.2rem;
 }
 
-#player-selection h2 {
-    font-size: 5rem;
+#difficulty-selection h2 {
+    font-size: 5.5rem;
     margin-bottom: 15vh;
 }
 
@@ -108,7 +108,7 @@ ul {
         margin-bottom: 10vh;
     }
 
-    #player-selection h2 {
+    #difficulty-selection h2 {
         font-size: 2.3rem;
         margin-bottom: 10vh;
     }
@@ -117,12 +117,12 @@ ul {
         font-size: 1.2rem;
     }
 
-    .player-button {
+    .difficulty-button {
         padding: 10px 15px;
         font-size: 22px;
     }
 
-    .player-options {
+    .difficulty-options {
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
@@ -145,14 +145,14 @@ ul {
    
 }
 
-.player-options {
+.difficulty-options {
     display: flex;
-    gap: 52px;
+    gap: 22px;
 }
 
-.player-button {
-    padding: 35px 45px;
-    font-size: 40px;
+.difficulty-button {
+    padding: 15px 20px;
+    font-size: 24px;
     cursor: pointer;
     background-color: #e0e0ff;
     border: 1px solid #000;
@@ -160,7 +160,7 @@ ul {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.player-button:hover {
+.difficulty-button:hover {
     background-color: #c0c0ff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
