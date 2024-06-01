@@ -41,7 +41,7 @@ body {
     justify-content: flex-start;
     align-items: center;
 }
-.matches, .scoreboard, .countdown, .stopwatch, .instructions {
+.matches, .scoreboard, .countdown, .stopwatch, .instructions, .restart {
     border: 1px solid #000;
     padding: 10px;
     text-align: center;
@@ -54,7 +54,7 @@ body {
     width: 100%; 
     margin-top: 10px;
 }
-.instructions {
+.instructions, .restart {
     width: 100%;
     margin-top: 20px;
 }
@@ -86,4 +86,7 @@ body {
     background-color: #000;
     color: #fff;
     cursor: pointer;
+}
+.restart{
+    color: red; 
 }
