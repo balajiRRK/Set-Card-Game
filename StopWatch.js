@@ -2,7 +2,7 @@
 Stopwatch object that takes the parameters step which is whether the timer will increment or increment and duration if there is a time limit for decrements.
 */
 function Stopwatch(step, duration){
-    this.step =step;
+    this.step = step;
     this.duration = duration; // duration is in seconds.
     this.time=0;
     this.test=0;
@@ -11,13 +11,18 @@ function Stopwatch(step, duration){
     If the timer is incrementing then step is +, otherwise  it is decrementing.
     */
     if(step=="+"){
-       incInterval(this);
-       
+        incInterval(this);
+        
     }else{
         decInterval(this,this.duration);
     }
     this.tostring= function(){
         return this.time;
+    }
+    
+    if (time = 5)
+    {
+       
     }
     
 }
