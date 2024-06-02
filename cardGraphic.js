@@ -1,63 +1,14 @@
+// Constants for card width and height
 const CARDWIDTH = 3.5;
 const CARDHEIGHT = 2.25;
+// Initial scale values for canvas
 let scaleW= 100;
 let scaleH = 100;
+//canvas element
 const canvas = document.getElementById("card");
 let shapeScale = 1;
 
-// const ctx = canvas.getContext("2d");
-
-// ctx.fillStyle = "gray"; // color of the card
-// ctx.fillRect(0, 0, width, height); // making the card
-
-
-//Path2D https://developer.mozilla.org/en-US/docs/Web/API/Path2D
-// let shape = new Path2D();
-
-
-// drawOval();
-// drawDiamond(shape,0);
-
-
-// ctx.fill(shape);
-// numerousShapeGenerator(2,shape,ctx);
-// stripeShape("blue",shape,ctx);
-// ctx.fillStyle = "red ";
-
-// shape2 = shape.trans
-// shadeShape(ctx,shape);
-// ctx.stroke(shape);
-// stripeShape(shape,ctx);
-
-// ctx.stroke(shape);
-// ctx.beginPath();
-// ctx.ellipse(canvas.width/2+50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.ellipse(canvas.width/2-50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.fill();
-// ctx.stroke();
-
-
-// ctx.fill();
-
-// function detectCard(card,id){
-//   const cardCanvas = document.createElement("canvas");
-//   cardCanvas.setAttribute("shape", card.shape);
-//   cardCanvas.setAttribute("color", card.color);
-//   cardCanvas.setAttribute("shading", card.shading);
-//   cardCanvas.setAttribute("number", card.number);
-//   document.getElementById(id+1).appendChild(cardCanvas);
-//   console.log("card id is "+id);
-//   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
-//   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
-//   const ctx = cardCanvas.getContext("2d");
-  
-//   let shape = new Path2D();
-//   ctx.fillStyle = "rgba(0,0,0,0)"; // color of the card
-//   ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
-//   numerousShapeGenerator(card.number,shape,cardCanvas,card);
-//   detectShading(card,shape,ctx,cardCanvas);
- 
-// }
+// Function to handle cell click events and detect card attributes
 function detectCard(card,id,scaleFactor,targetClass,background){
   const cardCanvas = document.createElement("canvas"); // offscring canvas
   cardCanvas.setAttribute("shape", card.shape);
@@ -90,24 +41,26 @@ function detectCard(card,id,scaleFactor,targetClass,background){
   // cardCanvas.height = cardCanvas.width * shapeScale;
   detectShading(card,shape,ctx,cardCanvas);
 }
+
+// Function to detect shading type and apply it to the card
 function detectShading(card,shape,ctx,cardCanvas){
  
   switch(card.shading){
     case "none":
       noneShape(shape,ctx,card,cardCanvas);
-    break;
+      break;
     case "dashed":
       stripeShape(shape,ctx,card,cardCanvas);
-    break;
+      break;
     case "filled":
       shadeShape(shape,ctx,card,cardCanvas);
-    break;
+      break;
   }
 }
+
+// Function to draw dimand shape on the canvas
 function drawDiamond(shape,offset,canvas){
-  
   // Diamond
-  
   // shape.beginPath();
   const triHeight = canvas.height/2 * Math.tan(degToRad(60));
   shape.moveTo((canvas.width/2)+offset,canvas.height-triHeight);
@@ -125,6 +78,8 @@ function drawDiamond(shape,offset,canvas){
   
 }
 
+
+// Function to draw a curve shape on the canvas
 function drawCurve(shape,offset,canvas){
   // Curve
   
@@ -144,7 +99,7 @@ function drawCurve(shape,offset,canvas){
 }
 
 
-
+// Function to draw shading with stripes on the canvas
 function stripeShape(shape,ctx,card){
   const stripesCanvas = document.createElement("canvas");
   const stripesContext = stripesCanvas.getContext("2d");
@@ -177,6 +132,8 @@ function stripeShape(shape,ctx,card){
 /*
 The glue (will make proper comments when done)
 */
+
+// Function to draw shapes on the card
 function numerousShapeGenerator(number,shape,canvas,card){
   // ctx.save();
   // New path2d objects are created because just using shape will cause a issue for ellipse with more than one shape
@@ -201,14 +158,16 @@ function numerousShapeGenerator(number,shape,canvas,card){
   }
   
 }
+
+// Function to draw different shapes
 function drawShape(shape,canvas,card,offset){
 switch(card.shape){
   case "diamond":
-  drawDiamond(shape,offset,canvas);
-  break;
+    drawDiamond(shape,offset,canvas);
+    break;
   case "curve":
     drawCurve(shape,offset,canvas);
-  break;
+    break;
   case "oval":
     drawOval(shape,offset,canvas);
     break;
@@ -216,14 +175,13 @@ switch(card.shape){
 }
 
 
-
+// Function to draw an oval shape on the canvas
 function drawOval(shape,offset,canvas){
   // Oval https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse
-  
   shape.ellipse((canvas.width/2)+offset, canvas.height/2, 20, 45, Math.PI, 0, 2 * Math.PI);
-  
-
 }
+
+// Function to draw shading without any pattern
 function noneShape(shape,ctx,card){
  
   ctx.strokeStyle= card.color;
@@ -232,6 +190,7 @@ function noneShape(shape,ctx,card){
   ctx.stroke(shape);
 }
 
+// Function to draw shading with solid color
 function shadeShape(shape,ctx,card){
   ctx.fillStyle = card.color;
   ctx.scale(shapeScale,shapeScale);
@@ -244,15 +203,8 @@ function obtained from https://developer.mozilla.org/en-US/docs/Learn/JavaScript
 Changes degress to radians for drawing on the canvas
 */
 
+// Function to convert degrees to radians
 function degToRad(degrees) {
     return (degrees * Math.PI) / 180;
   }
   
-// const symbol = document.getElementById("symbol");
-// const sWidth= (symbol.width = 200)//((3.5))*canvas.innerHeight/2*(200/canvas.innerWidth));
-// const sHeight = (symbol.height = 200)//(2.25)*canvas.innerHeight/2*(200/canvas.innerHeight));
-
-// const sctx = symbol.getContext("2d");
-
-// sctx.fillStyle = "red";
-// sctx.fillRect(0, 0, width, height);

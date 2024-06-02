@@ -1,5 +1,5 @@
 
-
+// Function to deal cards without duplicates
 function dealCardsWithoutDuplicates(cardsNum)
 {
 
@@ -14,11 +14,8 @@ function dealCardsWithoutDuplicates(cardsNum)
       let duplicate = false;
 
     // check if there is a duplicate card in cardsDealt array
-    for (let j = 0; j < cardsDealt.length; j++)
-    {
+    for (let j = 0; j < cardsDealt.length; j++) {
       
-      
-     
         if (equals(card,cardsDealt[j]))
         {
           duplicate = true;
@@ -26,7 +23,7 @@ function dealCardsWithoutDuplicates(cardsNum)
       
     }
 
-    // add to cardsDealt array if not duplicate
+    // Add to cardsDealt array if not duplicate
     if (!duplicate)
     {
       cardsDealt.push(card);
@@ -36,8 +33,10 @@ console.log(cardsDealt.length);
   return cardsDealt;
 }
 
+// Function to cread random card
 function createRandomCard()
 {
+  // Assign random values to color, shape, and shading
   let color = "";
   let shape = "";
   let shading = "";
@@ -93,10 +92,13 @@ function createRandomCard()
   
   return card;
 }
+
+// Function to check if two cards are equal
 function equals(card,card2){
   return card.shape==card2.shape && card.color==card2.color && card.shading == card2.shading && card.number == card2.number;
 }
 
+// Funcrtion to check if three cards form a set
 function checkIfSet(card1, card2, card3)
 {
   let shape = checkShapes(card1, card2, card3);
@@ -112,6 +114,7 @@ function checkIfSet(card1, card2, card3)
   return isSet;
 }
 
+// Function to generate cards with sets
 function generateCardsWithSets(setsNum, cardCount)
 {
   let setsCount = 0;
@@ -140,6 +143,7 @@ function generateCardsWithSets(setsNum, cardCount)
   return cardsDealt;
 }
 
+// Function to check if the colors of the three cards form a valid set
 function generateCardsWithSets2(setsNum, cardCount,deckSize)
 {
   let setsCount = 0;
@@ -188,15 +192,7 @@ function generateCardsWithSets2(setsNum, cardCount,deckSize)
 
 
 
-/**
- * Function to check if the colors of the three cards form a valid set.
- * A valid set is when all colors are the same or all colors are different.
- * 
- * @param {Object} card1 - The first card object with a color property.
- * @param {Object} card2 - The second card object with a color property.
- * @param {Object} card3 - The third card object with a color property.
- * @returns {boolean} - Returns true if the colors form a valid set, otherwise false.
- */
+// Function to check if the colors of the three cards form a valid set
 function checkColor(card1, card2, card3) {
   const colors = [card1.color, card2.color, card3.color];
   // A set will contain unique values, so its size will be 1 if all colors are the same,
@@ -204,15 +200,7 @@ function checkColor(card1, card2, card3) {
   return (new Set(colors).size === 1 || new Set(colors).size === 3);
 }
 
-/**
-* Function to check if the numbers on the three cards form a valid set.
-* A valid set is when all numbers are the same or all numbers are different.
-* 
-* @param {Object} card1 - The first card object with a number property.
-* @param {Object} card2 - The second card object with a number property.
-* @param {Object} card3 - The third card object with a number property.
-* @returns {boolean} - Returns true if the numbers form a valid set, otherwise false.
-*/
+//Function to check if the numbers on the three cards form a valid set
 function checkNumber(card1, card2, card3) {
   const numbers = [card1.number, card2.number, card3.number];
   // A set will contain unique values, so its size will be 1 if all numbers are the same,
@@ -220,25 +208,8 @@ function checkNumber(card1, card2, card3) {
   return (new Set(numbers).size === 1 || new Set(numbers).size === 3);
 }
 
-// Example usage of the checkColor and checkNumber functions
 
-// // Example set of cards with the same color and different numbers
-// const card1 = { color: 'red', number: 1 };
-// const card2 = { color: 'red', number: 2 };
-// const card3 = { color: 'red', number: 3 };
-
-// console.log(checkColor(card1, card2, card3)); // true (all colors are the same)
-// console.log(checkNumber(card1, card2, card3)); // true (all numbers are different)
-
-// // Example set of cards with different colors and the same number
-// const card4 = { color: 'red', number: 1 };
-// const card5 = { color: 'blue', number: 1 };
-// const card6 = { color: 'green', number: 1 };
-
-// console.log(checkColor(card4, card5, card6)); // true (all colors are different)
-// console.log(checkNumber(card4, card5, card6)); // true (all numbers are the same)
-
-// the function checks three cards shading and compare whther they are all same or all different
+// Function to check if the shadings of three cards form a valid set
  function checkShading(card1, card2, card3) {
   //store the shape value of each card in an array
   const shading = [card1.shading, card2.shading, card3.shading];
@@ -248,7 +219,7 @@ function checkNumber(card1, card2, card3) {
 }
 
 
-// the function checks three cards shape and compare whther they are all same or all different.
+// Function to check if the shapes of the three cards form a valid set
  function checkShapes(card1, card2, card3) {
   //store the shape value of each card in an array.
   const shape = [card1.shape, card2.shape, card3.shape];
