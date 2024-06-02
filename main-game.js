@@ -1,6 +1,7 @@
 let set = [];
 let click = 0;
 let stopwatch;
+const MINUTE = 60;
 // gneration of the cards
 let numberOfCards;
 // document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +35,23 @@ while (i < cardsInPlay.length) {
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
-stopwatch= startStopWatch();
+stopwatch= startStopWatch(difficulty);
+
+
+   
+ 
+
+function gameOver(stopwatch){
+    let timer = document.getElementById("timer")
+    console.log(stopwatch.time);
+    if(stopwatch.time==0){
+        clearTime(stopwatch);
+        window.location.href = 'game-over.html';
+    }
+}
+
+
+
 
 function goInstructions() {
     window.location.href = 'difficulty-selection.html';
@@ -63,6 +80,38 @@ function startStopWatch() {
     setInterval(() =>{
         document.getElementById("timer").innerHTML= stopwatch.time;
     },1000);
+    return stopwatch;
+}
+function startStopWatch(difficulty) {
+
+    switch(difficulty){
+            case "Easy":
+                stopwatch = new Stopwatch('-',MINUTE *1 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+
+                
+            break;
+            case "Normal":
+                stopwatch = new Stopwatch('-',MINUTE *2 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+            break;
+            case "Hard":
+                stopwatch = new Stopwatch('-',MINUTE *3 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+            break;
+
+    }
+    
+    
     return stopwatch;
 }
 
