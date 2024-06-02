@@ -34,6 +34,7 @@ while (i < cardsInPlay.length) {
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
+startStopWatch();
 
 function goInstructions() {
     window.location.href = 'difficulty-selection.html';
@@ -69,8 +70,8 @@ function difficultyMode(difficulty){
     const gameGrid = document.getElementById('game-grid');
     
     let numberOfCards;
-    if (difficulty == 'Easy'){
-        numberOfCards == 12; 
+    if (difficulty === 'Easy'){
+        numberOfCards = 6; 
     }else if (difficulty === 'Normal') {
         numberOfCards = 12;
     } else if (difficulty === 'Hard') {
@@ -85,7 +86,7 @@ function difficultyMode(difficulty){
         
         gameGrid.appendChild(card);
     }
-    
+    console.log("The number of cards  "+numberOfCards);
     if (numberOfCards === 6) {
         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (numberOfCards === 12) {
