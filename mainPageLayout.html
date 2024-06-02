@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <script defer type="text/javascript" src="Cards.js"></script>
     <script defer type="text/javascript" src="MainGame.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="matches">
@@ -45,99 +47,28 @@
                 <!-- <script type="text/javascript" src="saveScore.js"></script> -->
             </div>
             <div class="instructions">
-                <div class="button" id=".instructions" onclick="instructions.html">Instructions</div>
+                <div class="button" id=".instructions" onclick="goInstructions()">Instructions</div>
             </div>
             <div class="restart">
                 <div class="red-button" id=".restart" onclick="restartGame()">Restart</div>
             </div>
         </div>
     </div>
-
+    
     <script>
-        //  document.getElementsByTagName("main").addEventListener("load",  );
-        // var scoreboard;
-        // const playerKeys = ['A', 'L', 'H', 'K'];
-
-        // // creating the players
-        // let playerList = [];
-        // let player =4;
-
-        // addPlayerToGame(player,playerList);
-        // initializeScore(playerList);
-        // difficulty("normal");
-
-
-
-        // function addPlayerToGame(numOfPlayers,playerList){
-        //     while(playerList.length<numOfPlayers ){
-        //     addToPlayerList(numOfPlayers, playerList);
-        //     numOfPlayers++;
-        //     }
-        // }
-        
-
-        
-        // function initializeScore(playerList){
-        //     scoreboard = new Array(playerList.length).fill(0);
-        // }
-        // var stopwatch;
-
-        // // Function to generate 27 rows in the matches table
-        // function generateMatchesTable() {
-        //     const tableBody = document.querySelector('#matches-table tbody');
-        //     for (let i = 1; i <= 27; i++) {
-        //         const row = document.createElement('tr');
-        //         const cell = document.createElement('td');
-        //         cell.textContent = i;
-        //         row.appendChild(cell);
-        //         tableBody.appendChild(row);
-        //     }
-        //     stopwatch = Stopwatch('+', 0); 
-        //     setInterval(function(){
-        //         console.log(stopwatch.time);
-        //     },1000);
-        // }
-        // document.addEventListener('DOMContentLoaded', generateMatchesTable);
-        // document.addEventListener('GameStop', function(e){
-        //     pauseTimer(stopwatch);
-        // })
-
-        // document.addEventListener('keyup', (e) => {
-        //     var playerIndex = playerKeys.indexOf(e.code);
-        //     if (playerIndex !== -1) {
-        //         scoreKeeping(scoreboard, playerIndex); 
-        //     }
-        // });
-
-        // function diffultyMode(difficulty){
-        //     const gameGrid = document.getElementById('game-grid');
-
-        //     let numberOfCards;
-        //     if (difficulty == 'easy'){
-        //         numberOfCards == 6; 
-        //     }else if (difficulty === 'normal') {
-        //         numberOfCards = 12;
-        //     } else if (difficulty === 'hard') {
-        //         numberOfCards = 24;
-        //     }
-
-        //     for (let i = 1; i <= numberOfCards; i++) {
-        //         const card = document.createElement('div');
-        //         card.className = 'game-cell';
-        //         card.onclick = () => cellClicked(i);
-        //         gameGrid.appendChild(card);
-        //     }
-
-        //     if (numberOfCards === 6) {
-        //         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-        //     } else if (numberOfCards === 12) {
-        //         gameGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
-        //     } else if (numberOfCards === 24) {
-        //         gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
-        //     }
-        // }
-
+        function goInstructions() {
+            window.location.href = 'difficultySelection.html';
+        }
     </script>
-
+    
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // get difficulty from call to html page change
+            const urlParams = new URLSearchParams(window.location.search);
+            const difficulty = urlParams.get('difficulty');
+        })
+    </script>  
+    
 </body>
 </html>
