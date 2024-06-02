@@ -1,13 +1,15 @@
 let player =1;
 let set = [];
 let click =0;
+let stopwatch;
 
-difficultyMode("normal");
+let numberOfCards=startGame(); //difficultyMode("hard");
 
 // gneration of the cards
-let cards = generateCardsWithSets2(5,81,12);//dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
 
-let cardsInPlay = cards.slice(0,12);
+let cards = generateCardsWithSets2(5,81,numberOfCards);//dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
+
+
 
 let i = 0;
 
@@ -24,28 +26,37 @@ while (i<cardsInPlay.length){
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
+startStopWatch(stopwatch);
 
-var stopwatch;
+
+function startGame() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const difficulty = urlParams.get('difficulty');
+
+    window.location.href = `main-page-layout.html?difficulty=${difficulty}`;
+    let cardsInPlay = difficultyMode(difficulty);
+   return cardsInPlay;
+}
 
 // Function to generate 27 rows in the matches table
-// function generateMatchesTable() {
-//     const tableBody = document.querySelector('#matches-table tbody');
-//     for (let i = 1; i <= 27; i++) {
-//         const row = document.createElement('tr');
-//         const cell = document.createElement('td');
-//         cell.textContent = i;
-//         row.appendChild(cell);
-//         tableBody.appendChild(row);
-//     }
-//     stopwatch = new Stopwatch('+', 0); 
-//     setInterval(function(){
-//         document.getElementById("timer").innerHTML= stopwatch.time;
-//     },1000);
-// }
-// document.addEventListener('DOMContentLoaded', generateMatchesTable);
-// document.addEventListener('GameStop', function(e){
-//     pauseTimer(stopwatch);
-// })
+function startStopWatch(stopwatch) {
+    // const tableBody = document.querySelector('#matches-table tbody');
+    // for (let i = 1; i <= 27; i++) {
+    //     const row = document.createElement('tr');
+    //     const cell = document.createElement('td');
+    //     cell.textContent = i;
+    //     row.appendChild(cell);
+    //     tableBody.appendChild(row);
+    // }
+    stopwatch = new Stopwatch('+', 0); 
+    setInterval(function(){
+        document.getElementById("timer").innerHTML= stopwatch.time;
+    },1000);
+}
+document.addEventListener('DOMContentLoaded', function() {startStopWatch(stopwatch)} ); // easier to pause it later to show on the gameover screen if we want.
+document.addEventListener('GameStop', function(e){
+    pauseTimer(stopwatch);
+})
 
 
 
@@ -78,6 +89,7 @@ function difficultyMode(difficulty){
     } else if (numberOfCards === 24) {
         gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
     }
+        return numberOfCards;
 }
 
 function cellClicked(card,set){
