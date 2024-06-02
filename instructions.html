@@ -20,7 +20,6 @@
                 <ul id="game-instructions">
                     <li>The goal of the game is to find all possible sets of three cards where each card's features are either all the same or all different.</li>
                     <li>A set consists of three cards in which each of the cards' features (number, shape, shading, and color) are either all the same or all different.</li>
-                    <li>To select a set, press the corresponding keys for the three cards and confirm your selection by pressing "Enter".</li>
                 </ul>
             </div>
             <div class="bt-container">
@@ -35,22 +34,12 @@
     <script> 
         document.addEventListener('DOMContentLoaded', function() {
             
-            // get difficulty value from call to html page change
+            // get difficulty from call to html page change
             const urlParams = new URLSearchParams(window.location.search);
             const difficulty = urlParams.get('difficulty');
 
-            // Add instructions based off player count
             const difficultyInstructions = document.getElementById('difficulty-instructions');
             difficultyInstructions.textContent = `Difficulty: ${difficulty}`;
-
-            const playerKeys = ['A', 'L', 'H', 'K'];
-            for (let i = 0; i < difficulty; i++) {
-                const p = document.createElement('p');
-                p.style.fontWeight = 'bold';
-                p.style.fontSize = '1.5em';
-                p.textContent = `Player ${i + 1} uses the "${playerKeys[i]}" key to select cards.`;
-                difficultyInstructions.appendChild(p);
-            }
         })
     </script>
     
@@ -65,8 +54,11 @@
             const urlParams = new URLSearchParams(window.location.search);
             const difficulty = parseInt(urlParams.get('difficulty'));
 
+            console.log(difficulty);
+
             window.location.href = `mainPageLayout.html?difficulty=${difficulty}`;
         }
     </script>
+
 </body>
 </html>
