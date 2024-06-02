@@ -34,7 +34,7 @@ while (i < cardsInPlay.length) {
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
-startStopWatch();
+stopwatch= startStopWatch();
 
 function goInstructions() {
     window.location.href = 'difficulty-selection.html';
@@ -50,7 +50,7 @@ function startGame() {
 
 }
 
-function startStopWatch(stopwatch) {
+function startStopWatch() {
     // const tableBody = document.querySelector('#matches-table tbody');
     // for (let i = 1; i <= 27; i++) {
     //     const row = document.createElement('tr');
@@ -60,9 +60,10 @@ function startStopWatch(stopwatch) {
     //     tableBody.appendChild(row);
     // }
     stopwatch = new Stopwatch('+', 0); 
-    setInterval(function(){
+    setInterval(() =>{
         document.getElementById("timer").innerHTML= stopwatch.time;
     },1000);
+    return stopwatch;
 }
 
 function difficultyMode(difficulty){
