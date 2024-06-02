@@ -251,4 +251,48 @@ width: 70%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.gameOverRestartButton {
+    margin-top: 10vh;
+    font-size: 60px;
+    border-radius: 12px;
+    color: green;
+    border: 2px solid green;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7), 0 6px 20px 0 rgba(0,0,0,0.19); 
+}
+
+.gameOverRestartButton:hover {
+    background-color: green;
+    color: white;
+}
+
+.gameOverExitButton {
+    margin-top: 10vh;
+    padding: 5px 25px;
+    font-size: 60px;
+    border-radius: 12px;
+    color: red;
+    border: 2px solid red;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7), 0 6px 20px 0 rgba(0,0,0,0.19); 
+}
+
+.gameOverExitButton:hover {
+    background-color: red;
+    color: white;
+}
+
+.gameOverText {
+    text-align: center;
+    font-size: 6em;
+    animation: color-change 1s infinite;
+    padding: 10px 0px;
+}
+
+@keyframes color-change {
+    0% { color:red; }
+    50% { color:blue; }
+    100% { color:red; }
+}
+
 
