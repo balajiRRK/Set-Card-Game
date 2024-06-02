@@ -1,10 +1,20 @@
 let set = [];
 let click = 0;
-
+let stopwatch;
 // gneration of the cards
-let cards = generateCardsWithSets(5,81,12); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
+let numberOfCards;
+document.addEventListener('DOMContentLoaded', () => {
+            
+    // get difficulty from call to html page change
+    const urlParams = new URLSearchParams(window.location.search);
+    const difficulty = urlParams.get('difficulty');
 
-let cardsInPlay = cards.slice(0,12);
+    numberOfCards = difficultyMode(difficulty);
+})
+let cards = generateCardsWithSets(5,81,numberOfCards); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
+
+let cardsInPlay = cards.slice(0,numberOfCards);
+
 
 let i = 0;
 
@@ -22,27 +32,34 @@ while (i < cardsInPlay.length) {
     i++;    
 }
 
-var stopwatch;
+function goInstructions() {
+    window.location.href = 'difficulty-selection.html';
+}
 
-// Function to generate 27 rows in the matches table
-// function generateMatchesTable() {
-//     const tableBody = document.querySelector('#matches-table tbody');
-//     for (let i = 1; i <= 27; i++) {
-//         const row = document.createElement('tr');
-//         const cell = document.createElement('td');
-//         cell.textContent = i;
-//         row.appendChild(cell);
-//         tableBody.appendChild(row);
-//     }
-//     stopwatch = new Stopwatch('+', 0); 
-//     setInterval(function(){
-//         document.getElementById("timer").innerHTML= stopwatch.time;
-//     },1000);
-// }
-// document.addEventListener('DOMContentLoaded', generateMatchesTable);
-// document.addEventListener('GameStop', function(e){
-//     pauseTimer(stopwatch);
-// })
+function startGame() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const difficulty = urlParams.get('difficulty');
+
+    window.location.href = `main-page-layout.html?difficulty=${difficulty}`;
+    numberOfCards = difficultyMode(difficulty);
+    
+
+}
+
+function startStopWatch(stopwatch) {
+    // const tableBody = document.querySelector('#matches-table tbody');
+    // for (let i = 1; i <= 27; i++) {
+    //     const row = document.createElement('tr');
+    //     const cell = document.createElement('td');
+    //     cell.textContent = i;
+    //     row.appendChild(cell);
+    //     tableBody.appendChild(row);
+    // }
+    stopwatch = new Stopwatch('+', 0); 
+    setInterval(function(){
+        document.getElementById("timer").innerHTML= stopwatch.time;
+    },1000);
+}
 
 function difficultyMode(difficulty){
 
@@ -73,6 +90,7 @@ function difficultyMode(difficulty){
     } else if (numberOfCards === 24) {
         gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
     }
+    return numberOfCards;
 }
 
 function cellClicked(card,set){

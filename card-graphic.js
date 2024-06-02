@@ -59,15 +59,15 @@ let shapeScale = 1;
 
 // }
 function detectCard(card,id,scaleFactor,targetClass,background){
-  const cardCanvas = document.createElement("canvas"); // offscring canvas
-
+  const cardCanvas = document.createElement("canvas"); // offscreen canvas
+  console.log(document.getElementsByClassName("game-cell"));
   cardCanvas.setAttribute("shape", card.shape);
   cardCanvas.setAttribute("color", card.color);
   cardCanvas.setAttribute("shading", card.shading);
   cardCanvas.setAttribute("number", card.number);
   
   let target = document.getElementsByClassName(targetClass);
-  // console.log(target[id]);
+  console.log(target[0]);
   let write = target[length];
   // console.log(write.getAttribute("id") ); //.appendChild(cardCanvas);
   // write.setAttribute("id",id);
