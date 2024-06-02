@@ -1,4 +1,5 @@
 
+
 function dealCardsWithoutDuplicates(cardsNum)
 {
 
@@ -6,7 +7,7 @@ function dealCardsWithoutDuplicates(cardsNum)
   
   
   // creates random cards based off cardNum function argument and adds them to array if they are not a duplicate
-  for (let i = 0; i < cardsNum; i++)
+  while (cardsDealt.length != cardsNum)
     {
       
       let card = createRandomCard();
@@ -17,7 +18,7 @@ function dealCardsWithoutDuplicates(cardsNum)
     {
       
       
-        
+     
         if (equals(card,cardsDealt[j]))
         {
           duplicate = true;
@@ -31,7 +32,7 @@ function dealCardsWithoutDuplicates(cardsNum)
       cardsDealt.push(card);
     }
   }
-console.log(cardsDealt);
+console.log(cardsDealt.length);
   return cardsDealt;
 }
 
@@ -98,7 +99,7 @@ function equals(card,card2){
 
 function checkIfSet(card1, card2, card3)
 {
-  let shape = checkShape(card1, card2, card3);
+  let shape = checkShapes(card1, card2, card3);
   let color = checkColor(card1, card2, card3);
   let shading = checkShading(card1, card2, card3);
   let number = checkNumber(card1, card2, card3);
@@ -114,10 +115,10 @@ function checkIfSet(card1, card2, card3)
 function generateCardsWithSets(setsNum, cardCount)
 {
   let setsCount = 0;
-  let cardsDealt = dealCards(cardCount);
-  while (setCount != setsNum)
+  let cardsDealt = [];
+  while (setsCount != setsNum)
   {
-    cardsDealt = dealCards(cardCount);
+    cardsDealt = dealCardsWithoutDuplicates(cardCount);
 
     // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
     for (let i = 0; i < cardCount; i++)
@@ -138,6 +139,54 @@ function generateCardsWithSets(setsNum, cardCount)
   
   return cardsDealt;
 }
+
+function generateCardsWithSets2(setsNum, cardCount,deckSize)
+{
+  let setsCount = 0;
+  let cardsDealt = [];
+  let sets= [];
+  let equal = false;
+  // while (setsCount != setsNum)
+
+    cardsDealt = dealCardsWithoutDuplicates(cardCount).slice(0,deckSize);
+
+    // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
+    for (let i = 0; i < deckSize; i++)
+    {
+
+      for (let j = 0; j < deckSize; j++)
+      {
+        for (let k = 0; k < deckSize; k++)
+        {
+          
+          if (checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k]))
+          {
+            if(sets.length>0 ){
+              for (let l =0;l<sets.length;l++){
+                equal = equal || setEqual(sets[l],[cardsDealt[i],cardsDealt[j],cardsDealt[k]]);
+                console.log(equal);
+                
+              } 
+
+              }else if(sets.length==0) {
+                sets.push([cardsDealt[i],cardsDealt[j],cardsDealt[k]]);
+              setsCount++;
+              }
+
+             
+          }
+        }
+        
+      }
+}
+    console.log("maximum amount of sets "+setsCount);
+    console.log(sets);
+  // }
+  
+  return cardsDealt;
+  }
+
+
 
 /**
  * Function to check if the colors of the three cards form a valid set.
@@ -173,42 +222,61 @@ function checkNumber(card1, card2, card3) {
 
 // Example usage of the checkColor and checkNumber functions
 
-// Example set of cards with the same color and different numbers
-const card1 = { color: 'red', number: 1 };
-const card2 = { color: 'red', number: 2 };
-const card3 = { color: 'red', number: 3 };
+// // Example set of cards with the same color and different numbers
+// const card1 = { color: 'red', number: 1 };
+// const card2 = { color: 'red', number: 2 };
+// const card3 = { color: 'red', number: 3 };
 
-console.log(checkColor(card1, card2, card3)); // true (all colors are the same)
-console.log(checkNumber(card1, card2, card3)); // true (all numbers are different)
+// console.log(checkColor(card1, card2, card3)); // true (all colors are the same)
+// console.log(checkNumber(card1, card2, card3)); // true (all numbers are different)
 
-// Example set of cards with different colors and the same number
-const card4 = { color: 'red', number: 1 };
-const card5 = { color: 'blue', number: 1 };
-const card6 = { color: 'green', number: 1 };
+// // Example set of cards with different colors and the same number
+// const card4 = { color: 'red', number: 1 };
+// const card5 = { color: 'blue', number: 1 };
+// const card6 = { color: 'green', number: 1 };
 
-console.log(checkColor(card4, card5, card6)); // true (all colors are different)
-console.log(checkNumber(card4, card5, card6)); // true (all numbers are the same)
+// console.log(checkColor(card4, card5, card6)); // true (all colors are different)
+// console.log(checkNumber(card4, card5, card6)); // true (all numbers are the same)
 
 // the function checks three cards shading and compare whther they are all same or all different
  function checkShading(card1, card2, card3) {
   //store the shape value of each card in an array
-  const shading = [card1.shape, card2.shape, card3.shape];
-  //check whether the shape of the three cards are same
-  const allSame =  (shading[0] == shading[1]) &&  (shading[0] == shading[2]) &&  (shading[1] == shading[2]);
-  //check whether the shape of the three cards are different
-  const allDifferent =  (shading[0] != shading[1]) &&  (shading[0] != shading[2]) &&  (shading[1] != shading[2]);
-  //return true if either the shading are same or are different
-  return allSame || allDifferent;
+  const shading = [card1.shading, card2.shading, card3.shading];
+  // A set will contain unique values, so its size will be 1 if all colors are the same,
+  // or 3 if all colors are different.
+  return (new Set(shading).size === 1 || new Set(shading).size === 3);
 }
+
 
 // the function checks three cards shape and compare whther they are all same or all different.
  function checkShapes(card1, card2, card3) {
   //store the shape value of each card in an array.
-  const shapes = [card1.shape, card2.shape, card3.shape];
-  //check whether the shape of the three cards are same.
-  const allSame = (shapes[0] == shapes[1]) && (shapes[0] == shapes[2]) && (shapes[1] == shapes[2]);
-  //check whether the shape of the three cards are different.
-  const allDifferent = (shapes[0] != shapes[1]) && (shapes[0] != shapes[2]) && (shapes[1] != shapes[2]);
-  //return true if either the shapes are same or are different.
-  return allSame || allDifferent;
+  const shape = [card1.shape, card2.shape, card3.shape];
+  // A set will contain unique values, so its size will be 1 if all colors are the same,
+  // or 3 if all colors are different.
+  return (new Set(shape).size === 1 || new Set(shape).size === 3);
+}
+
+function setEqual(set1,set2){
+
+  let check = 0;
+  console.log("set1:")
+  console.log(set1);
+  console.log("set2:")
+  console.log(set2);
+  for(let i =0; i< set1.length;i++){
+    for(let k=0; k<set1.length;k++){
+      if(equals(set1[i],set2[k])){
+        console.log("inside equals");
+
+        console.log(set1[i]);
+        console.log("=?");
+        console.log(set2[k]);
+        check++;
+      }
+    } //
+   console.log("The checks are " + check);
+  }
+  return console.log(check ==3);
+
 }

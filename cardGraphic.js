@@ -41,16 +41,37 @@ const canvas = document.getElementById("card");
 
 function detectCard(card,id){
   const cardCanvas = document.createElement("canvas")
+  cardCanvas.setAttribute("shape", card.shape);
+  cardCanvas.setAttribute("color", card.color);
+  cardCanvas.setAttribute("shading", card.shading);
+  cardCanvas.setAttribute("number", card.number);
   document.getElementById(id+1).appendChild(cardCanvas);
   console.log("card id is "+id);
   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
   const ctx = cardCanvas.getContext("2d");
   
-let shape = new Path2D();
+  let shape = new Path2D();
   ctx.fillStyle = "gray"; // color of the card
   ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
   numerousShapeGenerator(card.number,shape,cardCanvas,card);
+  detectShading(card,shape,ctx,cardCanvas);
+ 
+  
+//   switch(card.shading){
+//     case "none":
+//       noneShape(shape,ctx,card,cardCanvas);
+//     break;
+//     case "dashed":
+//       stripeShape(shape,ctx,card,cardCanvas);
+//     break;
+//     case "filled":
+//       shadeShape(shape,ctx,card,cardCanvas);
+//     break;
+
+// }
+}
+function detectShading(card,shape,ctx,cardCanvas){
   switch(card.shading){
     case "none":
       noneShape(shape,ctx,card,cardCanvas);
@@ -62,11 +83,6 @@ let shape = new Path2D();
       shadeShape(shape,ctx,card,cardCanvas);
     break;
   }
-  
- 
-  
-
-
 }
 function drawDiamond(shape,offset,canvas){
   
@@ -214,4 +230,3 @@ function degToRad(degrees) {
 
 // sctx.fillStyle = "red";
 // sctx.fillRect(0, 0, width, height);
-
