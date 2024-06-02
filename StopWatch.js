@@ -29,7 +29,7 @@ function incInterval(Stopwatch){
     Stopwatch.Interval= setInterval(function(){
         Stopwatch.time+=1;
     },1000); // 1000 miliseconds as that is equal to one second.
-    console.log("the id is "+ Stopwatch.Interval); // for debugging 
+    // console.log("the id is "+ Stopwatch.Interval); // for debugging 
 }
 /*
 decrements the timer up by one, takes the Stopwatch object as a parameter.
@@ -41,14 +41,14 @@ function decInterval(Stopwatch, duration ){
 }
 /* erases the time and stops the interval */
 function clearTime(Stopwatch){
-    console.log("Clearing interval with id "+Stopwatch.Interval); // for debugging
+    // console.log("Clearing interval with id "+Stopwatch.Interval); // for debugging
     clearInterval(Stopwatch.Interval);
     Stopwatch.time=0;
     
 }
 /* stops the interval but keeps the time */
 function pauseTime(Stopwatch){
-    console.log("Pausing interval with id "+Stopwatch.Interval); // for debugging
+    // console.log("Pausing interval with id "+Stopwatch.Interval); // for debugging
     clearInterval(Stopwatch.Interval);
 }
 /* resumes the time after a pause */

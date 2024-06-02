@@ -3,7 +3,7 @@ const CARDHEIGHT = 2.25;
 let scaleW= 100;
 let scaleH = 100;
 const canvas = document.getElementById("card");
-
+let shapeScale = 1;
 
 // const ctx = canvas.getContext("2d");
 
@@ -39,39 +39,59 @@ const canvas = document.getElementById("card");
 
 // ctx.fill();
 
-function detectCard(card,id){
-  const cardCanvas = document.createElement("canvas")
+// function detectCard(card,id){
+//   const cardCanvas = document.createElement("canvas");
+//   cardCanvas.setAttribute("shape", card.shape);
+//   cardCanvas.setAttribute("color", card.color);
+//   cardCanvas.setAttribute("shading", card.shading);
+//   cardCanvas.setAttribute("number", card.number);
+//   document.getElementById(id+1).appendChild(cardCanvas);
+//   console.log("card id is "+id);
+//   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
+//   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
+//   const ctx = cardCanvas.getContext("2d");
+  
+//   let shape = new Path2D();
+//   ctx.fillStyle = "rgba(0,0,0,0)"; // color of the card
+//   ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
+//   numerousShapeGenerator(card.number,shape,cardCanvas,card);
+//   detectShading(card,shape,ctx,cardCanvas);
+ 
+// }
+function detectCard(card,id,scaleFactor,targetClass,background){
+  const cardCanvas = document.createElement("canvas"); // offscring canvas
   cardCanvas.setAttribute("shape", card.shape);
   cardCanvas.setAttribute("color", card.color);
   cardCanvas.setAttribute("shading", card.shading);
   cardCanvas.setAttribute("number", card.number);
-  document.getElementById(id+1).appendChild(cardCanvas);
+  
+  let target = document.getElementsByClassName(targetClass);
+  // console.log(target[id]);
+  let write =target[length];
+  // console.log(write.getAttribute("id") ); //.appendChild(cardCanvas);
+  // write.setAttribute("id",id);
+ target[id].appendChild(cardCanvas);
   console.log("card id is "+id);
+
+  
   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
+  
   const ctx = cardCanvas.getContext("2d");
   
   let shape = new Path2D();
-  ctx.fillStyle = "gray"; // color of the card
-  ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
-  numerousShapeGenerator(card.number,shape,cardCanvas,card);
-  detectShading(card,shape,ctx,cardCanvas);
- 
+  ctx.fillStyle = background; // color of the card
+  ctx.fillRect(0, 0, cardCanvas.width*scaleFactor, cardCanvas.height*scaleFactor); // making the card
+  // ctx.scale(scaleFactor,scaleFactor);
+  shapeScale= scaleFactor; // using scaling as a parameter would case the number to be read as a html element for some reason
   
-//   switch(card.shading){
-//     case "none":
-//       noneShape(shape,ctx,card,cardCanvas);
-//     break;
-//     case "dashed":
-//       stripeShape(shape,ctx,card,cardCanvas);
-//     break;
-//     case "filled":
-//       shadeShape(shape,ctx,card,cardCanvas);
-//     break;
-
-// }
+  numerousShapeGenerator(card.number,shape,cardCanvas,card);
+  // cardCanvas.width = cardCanvas.width * shapeScale;
+  // cardCanvas.height = cardCanvas.width * shapeScale;
+  detectShading(card,shape,ctx,cardCanvas);
 }
 function detectShading(card,shape,ctx,cardCanvas){
+ 
   switch(card.shading){
     case "none":
       noneShape(shape,ctx,card,cardCanvas);
@@ -100,6 +120,7 @@ function drawDiamond(shape,offset,canvas){
   shape.lineTo(((canvas.width/2)+canvas.width/8)+offset, canvas.height/2);
   shape.lineTo((canvas.width/2)+offset, triHeight-(canvas.height/40));
   
+ 
   // shape.stroke();
   
 }
@@ -148,6 +169,8 @@ function stripeShape(shape,ctx,card){
   const pattern = ctx.createPattern(stripesCanvas, "repeat"); // repeates the striped pattern from above for filling it later
   ctx.fillStyle = pattern;
   ctx.strokeStyle = card.color;
+
+  ctx.scale(shapeScale,shapeScale); // changes sizes without ruining the image
   ctx.stroke(shape);
   ctx.fill(shape);
 }
@@ -204,11 +227,14 @@ function drawOval(shape,offset,canvas){
 function noneShape(shape,ctx,card){
  
   ctx.strokeStyle= card.color;
+
+  ctx.scale(shapeScale,shapeScale);
   ctx.stroke(shape);
 }
 
 function shadeShape(shape,ctx,card){
   ctx.fillStyle = card.color;
+  ctx.scale(shapeScale,shapeScale);
   ctx.fill(shape);
 }
 
