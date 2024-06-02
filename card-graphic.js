@@ -15,92 +15,54 @@ let shapeScale = 1;
 // let shape = new Path2D();
 
 
-// drawOval();
-// drawDiamond(shape,0);
-
-
-// ctx.fill(shape);
-// numerousShapeGenerator(2,shape,ctx);
-// stripeShape("blue",shape,ctx);
-// ctx.fillStyle = "red ";
-
-// shape2 = shape.trans
-// shadeShape(ctx,shape);
-// ctx.stroke(shape);
-// stripeShape(shape,ctx);
-
-// ctx.stroke(shape);
-// ctx.beginPath();
-// ctx.ellipse(canvas.width/2+50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.ellipse(canvas.width/2-50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.fill();
-// ctx.stroke();
-
-
-// ctx.fill();
-
-// function detectCard(card,id){
-//   const cardCanvas = document.createElement("canvas");
-//   cardCanvas.setAttribute("shape", card.shape);
-//   cardCanvas.setAttribute("color", card.color);
-//   cardCanvas.setAttribute("shading", card.shading);
-//   cardCanvas.setAttribute("number", card.number);
-//   document.getElementById(id+1).appendChild(cardCanvas);
-//   console.log("card id is "+id);
-//   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
-//   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
-//   const ctx = cardCanvas.getContext("2d");
-  
-//   let shape = new Path2D();
-//   ctx.fillStyle = "rgba(0,0,0,0)"; // color of the card
-//   ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
-//   numerousShapeGenerator(card.number,shape,cardCanvas,card);
-//   detectShading(card,shape,ctx,cardCanvas);
- 
-// }
 function detectCard(card,id,scaleFactor,targetClass,background){
-  const cardCanvas = document.createElement("canvas"); // offscring canvas
+  const cardCanvas = document.createElement("canvas"); // offscreen canvas
+  // console.log(document.getElementsByClassName("game-cell"));
   cardCanvas.setAttribute("shape", card.shape);
   cardCanvas.setAttribute("color", card.color);
   cardCanvas.setAttribute("shading", card.shading);
   cardCanvas.setAttribute("number", card.number);
   
   let target = document.getElementsByClassName(targetClass);
-  // console.log(target[id]);
-  let write =target[length];
+  // console.log(target.length);
+  let write = target[length];
   // console.log(write.getAttribute("id") ); //.appendChild(cardCanvas);
   // write.setAttribute("id",id);
- target[id].appendChild(cardCanvas);
-  console.log("card id is "+id);
-
+  target[id].appendChild(cardCanvas);
+  // console.log("card id is "+id);
+  
   
   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
   
   const ctx = cardCanvas.getContext("2d");
   
+  
   let shape = new Path2D();
   ctx.fillStyle = background; // color of the card
-  ctx.fillRect(0, 0, cardCanvas.width*scaleFactor, cardCanvas.height*scaleFactor); // making the card
+  ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
   // ctx.scale(scaleFactor,scaleFactor);
   shapeScale= scaleFactor; // using scaling as a parameter would case the number to be read as a html element for some reason
   
   numerousShapeGenerator(card.number,shape,cardCanvas,card);
   // cardCanvas.width = cardCanvas.width * shapeScale;
   // cardCanvas.height = cardCanvas.width * shapeScale;
+   cardCanvas.width=cardCanvas.width*scaleFactor;
+  cardCanvas.height=cardCanvas.height*scaleFactor;
   detectShading(card,shape,ctx,cardCanvas);
+ 
 }
 function detectShading(card,shape,ctx,cardCanvas){
- 
+  
   switch(card.shading){
     case "none":
-      noneShape(shape,ctx,card,cardCanvas);
+    noneShape(shape,ctx,card,cardCanvas);
     break;
     case "dashed":
-      stripeShape(shape,ctx,card,cardCanvas);
+    stripeShape(shape,ctx,card,cardCanvas);
     break;
     case "filled":
-      shadeShape(shape,ctx,card,cardCanvas);
+    shadeShape(shape,ctx,card,cardCanvas);
     break;
   }
 }
@@ -120,7 +82,7 @@ function drawDiamond(shape,offset,canvas){
   shape.lineTo(((canvas.width/2)+canvas.width/8)+offset, canvas.height/2);
   shape.lineTo((canvas.width/2)+offset, triHeight-(canvas.height/40));
   
- 
+  
   // shape.stroke();
   
 }
@@ -169,7 +131,7 @@ function stripeShape(shape,ctx,card){
   const pattern = ctx.createPattern(stripesCanvas, "repeat"); // repeates the striped pattern from above for filling it later
   ctx.fillStyle = pattern;
   ctx.strokeStyle = card.color;
-
+  
   ctx.scale(shapeScale,shapeScale); // changes sizes without ruining the image
   ctx.stroke(shape);
   ctx.fill(shape);
@@ -184,11 +146,11 @@ function numerousShapeGenerator(number,shape,canvas,card){
   let shape3 = new Path2D();
   if(number ==3){
     drawShape(shape,canvas,card,0);
-  
+    
     drawShape(shape2,canvas,card,50);
     
     drawShape(shape3,canvas,card,-50);
-
+    
     shape.addPath(shape2);
     shape.addPath(shape3);
     
@@ -202,17 +164,17 @@ function numerousShapeGenerator(number,shape,canvas,card){
   
 }
 function drawShape(shape,canvas,card,offset){
-switch(card.shape){
-  case "diamond":
-  drawDiamond(shape,offset,canvas);
-  break;
-  case "curve":
+  switch(card.shape){
+    case "diamond":
+    drawDiamond(shape,offset,canvas);
+    break;
+    case "curve":
     drawCurve(shape,offset,canvas);
-  break;
-  case "oval":
+    break;
+    case "oval":
     drawOval(shape,offset,canvas);
     break;
-}
+  }
 }
 
 
@@ -222,12 +184,12 @@ function drawOval(shape,offset,canvas){
   
   shape.ellipse((canvas.width/2)+offset, canvas.height/2, 20, 45, Math.PI, 0, 2 * Math.PI);
   
-
+  
 }
 function noneShape(shape,ctx,card){
- 
+  
   ctx.strokeStyle= card.color;
-
+  
   ctx.scale(shapeScale,shapeScale);
   ctx.stroke(shape);
 }
@@ -245,9 +207,9 @@ Changes degress to radians for drawing on the canvas
 */
 
 function degToRad(degrees) {
-    return (degrees * Math.PI) / 180;
-  }
-  
+  return (degrees * Math.PI) / 180;
+}
+
 // const symbol = document.getElementById("symbol");
 // const sWidth= (symbol.width = 200)//((3.5))*canvas.innerHeight/2*(200/canvas.innerWidth));
 // const sHeight = (symbol.height = 200)//(2.25)*canvas.innerHeight/2*(200/canvas.innerHeight));
