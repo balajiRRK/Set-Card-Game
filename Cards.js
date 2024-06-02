@@ -271,7 +271,7 @@ function setEqual(set1,set2){
         console.log(set2[k]);
         check++;
       }
-    }
+    } //
    console.log("The checks are " + check);
   }
   return console.log(check ==3);
