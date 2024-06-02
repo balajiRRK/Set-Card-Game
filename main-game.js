@@ -13,11 +13,10 @@ let numberOfCards;
     numberOfCards = difficultyMode(difficulty);
 // })
 let target = document.getElementsByClassName('game-cell');
-    // console.log(document.getElementsByClassName('game-cell'));
 
-let cards = generateCardsWithSets(5,81,numberOfCards); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
+let cards = generateCardsWithSets(1, 6); 
 
-let cardsInPlay = cards.slice(0,numberOfCards);
+let cardsInPlay = cards.slice(0,6);
 
 
 let i = 0;
@@ -26,7 +25,7 @@ while (i < cardsInPlay.length) {
     
     const card = document.getElementById(i+1);
     
-    // card.setAttribute =cardsInPlay[i];
+    // card.setAttribute = cardsInPlay[i];
     detectCard(cardsInPlay[i],i,1,"game-cell","rgba(0,0,0,0)");
     const can = card.getElementsByTagName("canvas");
     // console.log(can.item(0));
@@ -166,8 +165,8 @@ function cellClicked(card,set){
     let setGrid = document.getElementById('set-grid');
     
     if (set.length == 3) {
-        console.log("Checking cards");
-        console.log(checkIfSet(set[0],set[1],set[2]));
+        // console.log("Checking cards");
+        // console.log(checkIfSet(set[0],set[1],set[2]));
         // console.log("end check")
         if( checkIfSet(set[0],set[1],set[2])) {
             
