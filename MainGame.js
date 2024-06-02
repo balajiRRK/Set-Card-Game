@@ -12,7 +12,7 @@ addPlayerToGame(player,playerList);
 diffultyMode("normal");
 
 // gneration of the cards
-let cards = dealCardsWithoutDuplicates(81);
+let cards =  generateCardsWithSets2(5,81,12);//dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
 
 let cardsInPlay = cards.slice(0,12);
 
