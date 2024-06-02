@@ -13,7 +13,7 @@ let numberOfCards;
     numberOfCards = difficultyMode(difficulty);
 // })
 let target = document.getElementsByClassName('game-cell');
-    console.log(document.getElementsByClassName('game-cell'));
+    // console.log(document.getElementsByClassName('game-cell'));
 
 let cards = generateCardsWithSets(5,81,numberOfCards); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
 
@@ -43,8 +43,8 @@ stopwatch= startStopWatch(difficulty);
 
 function gameOver(stopwatch){
     let timer = document.getElementById("timer")
-    console.log(stopwatch.time);
-    if(stopwatch.time==0){
+    // console.log(stopwatch.time);
+    if(stopwatch.time<=0){
         clearTime(stopwatch);
         window.location.href = 'game-over.html';
     }
@@ -68,10 +68,12 @@ function startGame() {
 }
 
 function startStopWatch() {
-    // const tableBody = document.querySelector('#matches-table tbody');
+    // const tableBody = document.querySelector('#cell tbody');
     // for (let i = 1; i <= 27; i++) {
     //     const row = document.createElement('tr');
+        
     //     const cell = document.createElement('td');
+    //     cell.setAttribute("id",i);
     //     cell.textContent = i;
     //     row.appendChild(cell);
     //     tableBody.appendChild(row);
@@ -136,7 +138,7 @@ function difficultyMode(difficulty){
         
         gameGrid.appendChild(card);
     }
-    console.log("The number of cards  "+numberOfCards);
+    // console.log("The number of cards  "+numberOfCards);
     if (numberOfCards === 6) {
         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (numberOfCards === 12) {
@@ -152,7 +154,7 @@ function cellClicked(card,set){
     
     // console.log("the color of the reforged card "+setCard.color);
     
-    console.log("The inset is " + isInSet(set,setCard));
+    // console.log("The inset is " + isInSet(set,setCard));
     if (isInSet(set,setCard) == false && set.length < 3 ){
         set.push(setCard);
         // console.log("here")
@@ -166,7 +168,7 @@ function cellClicked(card,set){
     if (set.length == 3) {
         console.log("Checking cards");
         console.log(checkIfSet(set[0],set[1],set[2]));
-        console.log("end check")
+        // console.log("end check")
         if( checkIfSet(set[0],set[1],set[2])) {
             
             // add to set found section
@@ -174,11 +176,11 @@ function cellClicked(card,set){
                 const setFound = document.createElement('div');
                 
                 setFound.className = 'set-cell';
-                setFound.style.gridTemplateColumns = 'repeat(1, 1fc)';
+                setFound.style.gridTemplateRows = 'repeat(3, 1fr)';
                 setFound.setAttribute("id",i+1);
                 
                 setGrid.appendChild(setFound);
-                detectCard(set[i],0,.5,"set-cell","gray");
+                detectCard(set[i],0,.2,"set-cell","gray");
             }
             
             

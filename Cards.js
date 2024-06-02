@@ -108,44 +108,45 @@ function checkIfSet(card1, card2, card3)
   return isSet;
 }
 
-function generateCardsWithSets(setsNum, cardCount,deckSize)
+function generateCardsWithSets(setsNum,deckSize)
 {
   let setsCount = 0;
   let cardsDealt = [];
   let sets= [];
   let equal = false;
   
-  cardsDealt = dealCardsWithoutDuplicates(cardCount).slice(0,deckSize);
+
+  cardsDealt = dealCardsWithoutDuplicates(deckSize);
   
   // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
-  for (let i = 0; i < deckSize; i++)
-  {
+  // for (let i = 0; i < deckSize; i++)
+  // {
     
-    for (let j = 0; j < deckSize; j++)
-    {
-      for (let k = 0; k < deckSize; k++)
-      {
+  //   for (let j = 0; j < deckSize; j++)
+  //   {
+  //     for (let k = 0; k < deckSize; k++)
+  //     {
         
-        if (checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k]))
-        {
-          if (sets.length > 0) {
-            for (let l =0; l < sets.length; l++){
-              equal = equal || setEqual(sets[l], [cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
-              console.log(equal);
+  //       if (checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k]))
+  //       {
+  //         if (sets.length > 0) {
+  //           for (let l =0; l < sets.length; l++){
+  //             equal = equal || setEqual(sets[l], [cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
+  //             console.log(equal);
               
-            } 
+  //           } 
             
-          } else if(sets.length == 0) {
-            sets.push([cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
-            setsCount++;
-          } 
+  //         } else if(sets.length == 0) {
+  //           sets.push([cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
+  //           setsCount++;
+  //         } 
           
           
-        }
-      }
+  //       }
+  //     }
       
-    }
-  }
+  //   }
+  // }
   console.log("maximum amount of sets "+setsCount);
   console.log(sets);
   // }
