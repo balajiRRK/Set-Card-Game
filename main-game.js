@@ -3,14 +3,17 @@ let click = 0;
 let stopwatch;
 // gneration of the cards
 let numberOfCards;
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
             
     // get difficulty from call to html page change
     const urlParams = new URLSearchParams(window.location.search);
     const difficulty = urlParams.get('difficulty');
 
     numberOfCards = difficultyMode(difficulty);
-})
+// })
+let target = document.getElementsByClassName('game-cell');
+    console.log(document.getElementsByClassName('game-cell'));
+
 let cards = generateCardsWithSets(5,81,numberOfCards); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
 
 let cardsInPlay = cards.slice(0,numberOfCards);

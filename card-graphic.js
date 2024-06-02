@@ -67,7 +67,7 @@ function detectCard(card,id,scaleFactor,targetClass,background){
   cardCanvas.setAttribute("number", card.number);
   
   let target = document.getElementsByClassName(targetClass);
-  console.log(target[0]);
+  console.log(target.length);
   let write = target[length];
   // console.log(write.getAttribute("id") ); //.appendChild(cardCanvas);
   // write.setAttribute("id",id);
