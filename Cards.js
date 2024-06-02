@@ -197,10 +197,10 @@ function setEqual(set1, set2){
 
   for (let i = 0; i < set1.length; i++) {
     for (let k = 0; k < set1.length; k++) {
-      if (equals(set1[i],set2[k])) {
+      if (equals(set1[i], set2[k])) {
         check++;
       }
     } 
   }
-  return check ==3;
+  return check == 3;
 }

@@ -15,64 +15,21 @@ let shapeScale = 1;
 // let shape = new Path2D();
 
 
-// drawOval();
-// drawDiamond(shape,0);
-
-
-// ctx.fill(shape);
-// numerousShapeGenerator(2,shape,ctx);
-// stripeShape("blue",shape,ctx);
-// ctx.fillStyle = "red ";
-
-// shape2 = shape.trans
-// shadeShape(ctx,shape);
-// ctx.stroke(shape);
-// stripeShape(shape,ctx);
-
-// ctx.stroke(shape);
-// ctx.beginPath();
-// ctx.ellipse(canvas.width/2+50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.ellipse(canvas.width/2-50, canvas.height/2, 20, 45, Math.PI / 1, 0, 2 * Math.PI);
-// ctx.fill();
-// ctx.stroke();
-
-
-// ctx.fill();
-
-// function detectCard(card,id){
-//   const cardCanvas = document.createElement("canvas");
-//   cardCanvas.setAttribute("shape", card.shape);
-//   cardCanvas.setAttribute("color", card.color);
-//   cardCanvas.setAttribute("shading", card.shading);
-//   cardCanvas.setAttribute("number", card.number);
-//   document.getElementById(id+1).appendChild(cardCanvas);
-//   console.log("card id is "+id);
-//   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
-//   cardCanvas.height = (CARDHEIGHT)*window.innerHeight/2*(scaleH/window.innerHeight);
-//   const ctx = cardCanvas.getContext("2d");
-
-//   let shape = new Path2D();
-//   ctx.fillStyle = "rgba(0,0,0,0)"; // color of the card
-//   ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
-//   numerousShapeGenerator(card.number,shape,cardCanvas,card);
-//   detectShading(card,shape,ctx,cardCanvas);
-
-// }
 function detectCard(card,id,scaleFactor,targetClass,background){
   const cardCanvas = document.createElement("canvas"); // offscreen canvas
-  console.log(document.getElementsByClassName("game-cell"));
+  // console.log(document.getElementsByClassName("game-cell"));
   cardCanvas.setAttribute("shape", card.shape);
   cardCanvas.setAttribute("color", card.color);
   cardCanvas.setAttribute("shading", card.shading);
   cardCanvas.setAttribute("number", card.number);
   
   let target = document.getElementsByClassName(targetClass);
-  console.log(target.length);
+  // console.log(target.length);
   let write = target[length];
   // console.log(write.getAttribute("id") ); //.appendChild(cardCanvas);
   // write.setAttribute("id",id);
   target[id].appendChild(cardCanvas);
-  console.log("card id is "+id);
+  // console.log("card id is "+id);
   
   
   cardCanvas.width = ((CARDWIDTH))*window.innerWidth/2*(scaleW/window.innerWidth);
@@ -80,16 +37,20 @@ function detectCard(card,id,scaleFactor,targetClass,background){
   
   const ctx = cardCanvas.getContext("2d");
   
+  
   let shape = new Path2D();
   ctx.fillStyle = background; // color of the card
-  ctx.fillRect(0, 0, cardCanvas.width*scaleFactor, cardCanvas.height*scaleFactor); // making the card
+  ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height); // making the card
   // ctx.scale(scaleFactor,scaleFactor);
   shapeScale= scaleFactor; // using scaling as a parameter would case the number to be read as a html element for some reason
   
   numerousShapeGenerator(card.number,shape,cardCanvas,card);
   // cardCanvas.width = cardCanvas.width * shapeScale;
   // cardCanvas.height = cardCanvas.width * shapeScale;
+   cardCanvas.width=cardCanvas.width*scaleFactor;
+  cardCanvas.height=cardCanvas.height*scaleFactor;
   detectShading(card,shape,ctx,cardCanvas);
+ 
 }
 function detectShading(card,shape,ctx,cardCanvas){
   

@@ -1,6 +1,7 @@
 let set = [];
 let click = 0;
 let stopwatch;
+const MINUTE = 60;
 // gneration of the cards
 let numberOfCards;
 // document.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +34,23 @@ while (i < cardsInPlay.length) {
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
-startStopWatch();
+stopwatch= startStopWatch(difficulty);
+
+
+   
+ 
+
+function gameOver(stopwatch){
+    let timer = document.getElementById("timer")
+    // console.log(stopwatch.time);
+    if(stopwatch.time<=0){
+        clearTime(stopwatch);
+        window.location.href = 'game-over.html';
+    }
+}
+
+
+
 
 function goInstructions() {
     window.location.href = 'difficulty-selection.html';
@@ -49,19 +66,54 @@ function startGame() {
 
 }
 
-function startStopWatch(stopwatch) {
-    // const tableBody = document.querySelector('#matches-table tbody');
+function startStopWatch() {
+    // const tableBody = document.querySelector('#cell tbody');
     // for (let i = 1; i <= 27; i++) {
     //     const row = document.createElement('tr');
+        
     //     const cell = document.createElement('td');
+    //     cell.setAttribute("id",i);
     //     cell.textContent = i;
     //     row.appendChild(cell);
     //     tableBody.appendChild(row);
     // }
     stopwatch = new Stopwatch('+', 0); 
-    setInterval(function(){
+    setInterval(() =>{
         document.getElementById("timer").innerHTML= stopwatch.time;
     },1000);
+    return stopwatch;
+}
+function startStopWatch(difficulty) {
+
+    switch(difficulty){
+            case "Easy":
+                stopwatch = new Stopwatch('-',MINUTE *1 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+
+                
+            break;
+            case "Normal":
+                stopwatch = new Stopwatch('-',MINUTE *2 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+            break;
+            case "Hard":
+                stopwatch = new Stopwatch('-',MINUTE *3 ); 
+                setInterval(() =>{
+                    document.getElementById("timer").innerHTML= stopwatch.time;
+                    gameOver(stopwatch);
+                },1000);
+            break;
+
+    }
+    
+    
+    return stopwatch;
 }
 
 function difficultyMode(difficulty){
@@ -85,7 +137,7 @@ function difficultyMode(difficulty){
         
         gameGrid.appendChild(card);
     }
-    console.log("The number of cards  "+numberOfCards);
+    // console.log("The number of cards  "+numberOfCards);
     if (numberOfCards === 6) {
         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (numberOfCards === 12) {
@@ -123,11 +175,11 @@ function cellClicked(card,set){
                 const setFound = document.createElement('div');
                 
                 setFound.className = 'set-cell';
-                setFound.style.gridTemplateColumns = 'repeat(1, 1fc)';
+                setFound.style.gridTemplateRows = 'repeat(3, 1fr)';
                 setFound.setAttribute("id",i+1);
                 
                 setGrid.appendChild(setFound);
-                detectCard(set[i],0,.5,"set-cell","gray");
+                detectCard(set[i],0,.2,"set-cell","gray");
             }
             
             
