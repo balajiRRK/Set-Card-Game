@@ -1,3 +1,4 @@
+/* Style for the body, including font, margin, padding, and background image setting */
 body {
     font-family: 'Permanent Marker', cursive;
     margin: 0;
@@ -14,6 +15,7 @@ body {
     background-repeat: no-repeat;
 }
 
+/* General for all pages, including display, padding, and color settings */
 .page {
     display: flex;
     flex-direction: column;
@@ -27,17 +29,19 @@ body {
   
 }
 
+/* Style for hidden elements */
 .hidden {
     display: none;
 }
 
+/* specific style for the home page, setting cursor and size */
 #home-page {
     cursor: pointer;
     height: 100%;
     width: 100vw;
 }
 
-
+/* Animation for the text on the home page */
 #home-page p {
     animation: dimming 1500ms infinite;
     font-size: 1.5rem; /* Adjust size as needed */
@@ -45,6 +49,7 @@ body {
     margin-top: 20px; /* Adjust margin as needed */
 }
 
+ /* Keyframes for the dimming animation */
 @keyframes dimming {
     0% {
         opacity: 1;
@@ -57,13 +62,13 @@ body {
     }
 }
 
-
+/* Style for unordered lists */
 ul {
     padding: 0;
     text-align: left;
 }
 
-
+/* Style for the exit button */
 .exit-button {
     position: absolute;
     top: 20px;
@@ -77,10 +82,13 @@ ul {
     border-radius: 5px;
 }
 
+/* Hover effect for the exit button */
 .exit-button:hover {
     background-color: #fd7979;
 }
 
+
+/* Style for the main container */
 .container {
     display: flex;
     flex-direction: column;
@@ -88,20 +96,24 @@ ul {
     height: 100%;
 }
 
+/* Style for the main title */
 .container h1 {
     font-size: 7rem;
     margin-bottom: 15vh;
 }
 
+/* Style for the main paragraph */
 .container p {
     font-size: 2.2rem;
 }
 
+/* Style for the difficulty selection title */
 #difficulty-selection h2 {
     font-size: 5.5rem;
     margin-bottom: 15vh;
 }
 
+/* Responsive styles for the smaller screens */
 @media (max-width: 768px) {
     .container h1 {
         font-size: 3.5rem;
@@ -145,11 +157,13 @@ ul {
    
 }
 
+/* Style for the difficulty selection buttons container */
 .difficulty-options {
     display: flex;
     gap: 22px;
 }
 
+/* Style for the difficulty selection buttons */
 .difficulty-button {
     padding: 15px 20px;
     font-size: 24px;
@@ -161,11 +175,13 @@ ul {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+/* Hover effect for the difficulty selection buttons */
 .difficulty-button:hover {
     background-color: #c0c0ff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Style for the instructions page */
 #instructions-page{
     width: 100vw;
     display: flex;
@@ -180,17 +196,21 @@ ul {
     
 }
 
+/* Style for the instructions title */
 #instructions-page h1 {
     font-size: 4rem;
     
 }
 
+
+/* Style for list items */
 li{
     margin-bottom: 8px;
     font-size: large;
     font-style: italic;
 }
 
+/* Style for the instructions container */
 .instruction-container{
     display: flex;
     gap: 5%;
@@ -198,26 +218,26 @@ li{
     justify-content: space-between;
 }
 
-
+/* Style for the instructions text */
 .instructions{
 width: 70%;
 }
 
+/* Style for the game instruction text */ 
 #game-instructions{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
-
     color: white;
 }
    
-
+/* Style for the button container */
 .bt-container{
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
 
-/* Button styling */
+/* Style for star and restart buttons */
 .bt-start, .bt-restart {
     padding: 10px 20px;
     font-size: 20px;
@@ -233,24 +253,29 @@ width: 70%;
     letter-spacing: 1px;
 }
 
+/* Style for the start button */
 .bt-start {
     background-color: #28a745; /* Green */
 }
 
+/* Hover effect for the start button */
 .bt-start:hover {
     background-color: #218838; /* Darker green */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Style for the restart button */ 
 .bt-restart {
     background-color: #007bff; /* Blue */
 }
 
+/* Hover effect for the restart button */
 .bt-restart:hover {
     background-color: #0056b3; /* Darker blue */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Style for the game over restart button */
 .gameOverRestartButton {
     margin-top: 10vh;
     font-size: 60px;
@@ -261,11 +286,13 @@ width: 70%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7), 0 6px 20px 0 rgba(0,0,0,0.19); 
 }
 
+/* Hover effect for the game over restart button */
 .gameOverRestartButton:hover {
     background-color: green;
     color: white;
 }
 
+/* Style for the game over exit button */
 .gameOverExitButton {
     margin-top: 10vh;
     padding: 5px 25px;
@@ -277,11 +304,13 @@ width: 70%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7), 0 6px 20px 0 rgba(0,0,0,0.19); 
 }
 
+/* Hover effect for the game over exit button */
 .gameOverExitButton:hover {
     background-color: red;
     color: white;
 }
 
+/* Style for the game over text */
 .gameOverText {
     text-align: center;
     font-size: 6em;
@@ -289,6 +318,7 @@ width: 70%;
     padding: 10px 0px;
 }
 
+/* Keyframes for the color-change animation */
 @keyframes color-change {
     0% { color:red; }
     50% { color:blue; }

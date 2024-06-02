@@ -9,16 +9,19 @@
 </head>
 
 <body>
+    <!-- Difficulty selection page-->
     <div id="difficulty-selection" class="page">
         <h2> Select Difficulty Mode: </h2>
         <div class="difficulty-options">
+            <!-- Buttons to select difficulty level-->
             <button class="difficulty-button" onclick="selectDifficulties('Easy')">Easy</button>
             <button class="difficulty-button" onclick="selectDifficulties('Normal')">Normal</button>
             <button class="difficulty-button" onclick="selectDifficulties('Hard')">Hard</button>
         </div>
     </div>
 
-    <script> 
+    <script>
+        // Redirect to instructions page with selected difficulty
         function selectDifficulties(difficulty) {
             window.location.href = `instructions.html?difficulty=${difficulty}`;
         }

@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- Instruction page -->
     <div id="instructions-page">
         <button class="exit-button" onclick="goBack()">✖ Exit</button>
         <h1>Instructions</h1>
@@ -32,24 +33,26 @@
     </div>
     
     <script> 
+        // Set difficulty text based on URL
         document.addEventListener('DOMContentLoaded', function() {
             
             // get difficulty from call to html page change
             const urlParams = new URLSearchParams(window.location.search);
             const difficulty = urlParams.get('difficulty');
-
             const difficultyInstructions = document.getElementById('difficulty-instructions');
             difficultyInstructions.textContent = `Difficulty: ${difficulty}`;
         })
     </script>
     
     <script>
+        // Go back to difficultySelection page
         function goBack() {
             window.location.href = 'difficultySelection.html';
         }
     </script> 
 
     <script>
+        // Start the game and redirect to main game page with difficulty
         function startGame() {
             const urlParams = new URLSearchParams(window.location.search);
             const difficulty = parseInt(urlParams.get('difficulty'));
