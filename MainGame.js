@@ -7,7 +7,7 @@ let player =1;
 let set = [];
 let click =0;
 
-addPlayerToGame(player,playerList);
+// addPlayerToGame(player,playerList);
 // initializeScore();
 diffultyMode("normal");
 
