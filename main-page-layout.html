@@ -7,10 +7,10 @@
     <title>Game of Set</title>
     <link rel="stylesheet" href="styles.css">
     <!-- <script defer type="text/javascript" src="https://underscorejs.org/underscore-umd-min.js"></script> -->
-    <script defer type="text/javascript" src="StopWatch.js"></script>
-    <script defer type="text/javascript" src="cardGraphic.js"></script>
-    <script defer type="text/javascript" src="Cards.js"></script>
-    <script defer type="text/javascript" src="MainGame.js"></script>
+    <script type="text/javascript" src="stopwatch.js"></script>
+    <script type="text/javascript" src="card-graphic.js"></script>
+    <script type="text/javascript" src="cards.js"></script>
+    <script type="text/javascript" src="main-game.js"></script>
 </head>
 
 <body>
@@ -32,32 +32,32 @@
             </div>
         </div>
         <div class = "right-section">
+
             <div class="stopwatch">
                 <h2>Stopwatch</h2>
                 <p id="timer"></p>
                 <!--<script type="text/javascript" src="StopWatch.js"></script>-->
             </div>
+
             <div class="countdown">
                 <h2>Countdown</h2>
                 <p onkeyup=""></p>
             </div>
-            <div class="scoreboard">
-                <h2>Scoreboard</h2>
-                <!-- <p>Player 2: <span id="player2-score"></span></p> -->
-                <!-- <script type="text/javascript" src="saveScore.js"></script> -->
-            </div>
+
             <div class="instructions">
                 <div class="button" id=".instructions" onclick="goInstructions()">Instructions</div>
             </div>
+
             <div class="restart">
                 <div class="red-button" id=".restart" onclick="restartGame()">Restart</div>
             </div>
+
         </div>
     </div>
     
     <script>
         function goInstructions() {
-            window.location.href = 'difficultySelection.html';
+            window.location.href = 'difficulty-selection.html';
         }
     </script>
     
@@ -67,6 +67,8 @@
             // get difficulty from call to html page change
             const urlParams = new URLSearchParams(window.location.search);
             const difficulty = urlParams.get('difficulty');
+
+            difficultyMode(difficulty);
         })
     </script>  
     

@@ -1,26 +1,23 @@
-let player =1;
 let set = [];
-let click =0;
-
-difficultyMode("normal");
+let click = 0;
 
 // gneration of the cards
-let cards = generateCardsWithSets2(5,81,12);//dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
+let cards = generateCardsWithSets(5,81,12); //dealCardsWithoutDuplicates(81);//dealCardsWithoutDuplicates(81);//generateCardsWithSets(1,81);//dealCardsWithoutDuplicates(81);
 
 let cardsInPlay = cards.slice(0,12);
 
 let i = 0;
 
-while (i<cardsInPlay.length){
-   
+while (i < cardsInPlay.length) {
+    
     const card = document.getElementById(i+1);
-
+    
     // card.setAttribute =cardsInPlay[i];
     detectCard(cardsInPlay[i],i,1,"game-cell","rgba(0,0,0,0)");
-    const can =card.getElementsByTagName("canvas");
+    const can = card.getElementsByTagName("canvas");
     // console.log(can.item(0));
     // card.onclick = () => cellClicked(can.item(0).getAttribute("color"));
-
+    
     card.onclick = () => cellClicked(can.item(0),set);
     i++;    
 }
@@ -47,30 +44,28 @@ var stopwatch;
 //     pauseTimer(stopwatch);
 // })
 
-
-
 function difficultyMode(difficulty){
 
     const gameGrid = document.getElementById('game-grid');
-
+    
     let numberOfCards;
-    if (difficulty == 'easy'){
-        numberOfCards == 6; 
-    }else if (difficulty === 'normal') {
+    if (difficulty == 'Easy'){
+        numberOfCards == 12; 
+    }else if (difficulty === 'Normal') {
         numberOfCards = 12;
-    } else if (difficulty === 'hard') {
+    } else if (difficulty === 'Hard') {
         numberOfCards = 24;
     }
-
+    
     for (let i = 1; i <= numberOfCards; i++) {
         const card = document.createElement('div');
         const can =card.getElementsByTagName("canvas");
         card.className = 'game-cell';
-        card.setAttribute("id",i);
+        card.setAttribute("id", i);
         
         gameGrid.appendChild(card);
     }
-
+    
     if (numberOfCards === 6) {
         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (numberOfCards === 12) {
@@ -81,50 +76,49 @@ function difficultyMode(difficulty){
 }
 
 function cellClicked(card,set){
-    setCard= reforgeCard(card);
+    setCard = reforgeCard(card);
     
     // console.log("the color of the reforged card "+setCard.color);
     
-    console.log("The inset is "+isInSet(set,setCard));
-    if(  isInSet(set,setCard)==false && set.length<3 ){
+    console.log("The inset is " + isInSet(set,setCard));
+    if (isInSet(set,setCard) == false && set.length < 3 ){
         set.push(setCard);
         // console.log("here")
-    }else if(isInSet(set,setCard)){
+    } else if(isInSet(set,setCard)){
         console.log("select another card")
     }
-
+    
     // console.log(set.length);
-    let setGrid=   document.getElementById('set-grid');
-
-    if (set.length ==3){
+    let setGrid = document.getElementById('set-grid');
+    
+    if (set.length == 3) {
         console.log("Checking cards");
         console.log(checkIfSet(set[0],set[1],set[2]));
         console.log("end check")
-       if( checkIfSet(set[0],set[1],set[2])){
-        // add to set found section
+        if( checkIfSet(set[0],set[1],set[2])) {
+            
+            // add to set found section
+            for (let i = 0; i < set.length; i++) {
+                const setFound = document.createElement('div');
+                
+                setFound.className = 'set-cell';
+                setFound.style.gridTemplateColumns = 'repeat(1, 1fc)';
+                setFound.setAttribute("id",i+1);
+                
+                setGrid.appendChild(setFound);
+                detectCard(set[i],0,.5,"set-cell","gray");
+            }
+            
+            
+            
+        }
+        while(set.length !=0){
+            set.pop();
+        }
         
-     
-        for (let i = 0; i < set.length; i++) {
-            const setFound = document.createElement('div');
-
-        setFound.className = 'set-cell';
-        setFound.style.gridTemplateColumns = 'repeat(1, 1fc)';
-        setFound.setAttribute("id",i+1);
         
-        setGrid.appendChild(setFound);
-        detectCard(set[i],0,.5,"set-cell","gray");
     }
-  
-        
-        
-       }
-       while(set.length !=0){
-        set.pop();
-    }
-        
-        
-    }
-
+    
 }
 
 function isInSet(set,card){
@@ -133,7 +127,7 @@ function isInSet(set,card){
     for(let i=0;i<set.length;i++){
         // console.log(set[i].color+" "+ card.color);
         // console.log(set[i].color ==card.color);
-        inSet= inSet|| equals(set[i],card);
+        inSet= inSet || equals(set[i],card);
     }
     // console.log("end of isInSet test");
     return inSet;
@@ -141,10 +135,10 @@ function isInSet(set,card){
 
 function reforgeCard(card){
     let forgedCard = createRandomCard();
-    forgedCard.color =card.getAttribute("color");
-    forgedCard.shape =card.getAttribute("shape");
-    forgedCard.shading =card.getAttribute("shading");
-    forgedCard.number =card.getAttribute("number");
+    forgedCard.color = card.getAttribute("color");
+    forgedCard.shape = card.getAttribute("shape");
+    forgedCard.shading = card.getAttribute("shading");
+    forgedCard.number = card.getAttribute("number");
     // console.log("In reforge func "+forgedCard.color);
     // console.log(equals(forgedCar))
     return forgedCard;
