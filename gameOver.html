@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Game of Set </title>
+    <link rel="stylesheet" type="text/css" href="opening-style.css" />
+</head>
+
+<body>
+    <div id="game-over-page">
+        
+        <h class="gameOverText"> Game Over </h>
+
+        <div class="bt-container">
+            <button class="gameOverRestartButton" onclick=goDifficultySelection()> Restart </button>
+            <button class="gameOverExitButton" onclick=goHome()> ✖ Exit </button>
+        </div>
+    </div>
+</body>
+
+<script>
+    function goDifficultySelection() {
+        window.location.href = 'difficultySelection.html';
+    }
+</script>
+
+<script>
+    function goHome() {
+        window.location.href = 'home.html';
+    }
+</script>
