@@ -153,6 +153,7 @@ function generateCardsWithSets2(setsNum, cardCount,deckSize)
     // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck.
     for (let i = 0; i < deckSize; i++)
     {
+
       for (let j = 0; j < deckSize; j++)
       {
         for (let k = 0; k < deckSize; k++)
@@ -184,6 +185,7 @@ function generateCardsWithSets2(setsNum, cardCount,deckSize)
   
   return cardsDealt;
   }
+
 
 
 /**
@@ -256,6 +258,7 @@ function checkNumber(card1, card2, card3) {
 }
 
 function setEqual(set1,set2){
+
   let check = 0;
   console.log("set1:")
   console.log(set1);
@@ -275,4 +278,5 @@ function setEqual(set1,set2){
    console.log("The checks are " + check);
   }
   return console.log(check ==3);
+
 }
