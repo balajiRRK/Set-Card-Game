@@ -88,18 +88,18 @@ function goInstructions() {
 function startGame() {
     const urlParams = new URLSearchParams(window.location.search);
     const difficulty = urlParams.get('difficulty');
-
+    
     window.location.href = `main-page-layout.html?difficulty=${difficulty}`;
     numberOfCards = difficultyMode(difficulty);
     
-
+    
 }
 
 function startStopWatch() {
     // const tableBody = document.querySelector('#cell tbody');
     // for (let i = 1; i <= 27; i++) {
     //     const row = document.createElement('tr');
-        
+    
     //     const cell = document.createElement('td');
     //     cell.setAttribute("id",i);
     //     cell.textContent = i;
@@ -113,7 +113,7 @@ function startStopWatch() {
     return stopwatch;
 }
 function startStopWatch(difficulty) {
-
+    
     switch(difficulty){
             case "Easy":
                 stopwatch = new Stopwatch('-',MINUTE *1 ); 
@@ -146,7 +146,7 @@ function startStopWatch(difficulty) {
 }
 
 function difficultyMode(difficulty){
-
+    
     const gameGrid = document.getElementById('game-grid');
     
     let numberOfCards;
@@ -155,7 +155,7 @@ function difficultyMode(difficulty){
     }else if (difficulty === 'Normal') {
         numberOfCards = 12;
     } else if (difficulty === 'Hard') {
-        numberOfCards = 24;
+        numberOfCards = 12;
     }
     
     for (let i = 1; i <= numberOfCards; i++) {
@@ -171,8 +171,8 @@ function difficultyMode(difficulty){
         gameGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
     } else if (numberOfCards === 12) {
         gameGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
-    } else if (numberOfCards === 24) {
-        gameGrid.style.gridTemplateColumns = 'repeat(6, 1fr)';
+    } else if (numberOfCards === 12) {
+        gameGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
     }
     return numberOfCards;
 }
