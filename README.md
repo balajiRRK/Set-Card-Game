@@ -55,7 +55,7 @@ Difficulty Levels:
 
 - **Easy:** Find 1 set in 3 minutes
 - **Normal:** Find 2 sets in 2 minutes
-- **Hard:** Find 3 sets in 1 minute
+- **Hard:** Find 4 sets in 1 minute
 
 The timer starts when the game begins. You must find the required number of sets within the allotted time to win.
 
@@ -69,14 +69,17 @@ Our Set game includes three difficulty levels to challenge players of all skill 
 
  **Easy Mode:**
 - Objective: Find 1 set
+- Card: 6 cards
 - Time Limit: 3 minutes
 
 **Normal Mode:**
 - Objective: Find 2 sets
+- Card: 12 cards
 - Time Limit: 2 minutes
 
 **Hard Mode:**
-- Objective: Find 3 sets
+- Objective: Find 4 sets
+- Card: 12 cards
 - Time Limit: 1 minute
 
 Timer:
