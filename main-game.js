@@ -7,33 +7,35 @@ let found =0;
 let numberOfCards;
 let setAmount;
 // document.addEventListener('DOMContentLoaded', () => {
-            
+    
     // get difficulty from call to html page change
     const urlParams = new URLSearchParams(window.location.search);
     const difficulty = urlParams.get('difficulty');
-
+    
     numberOfCards = difficultyMode(difficulty);
-// })
-let target = document.getElementsByClassName('game-cell');
-setAmount=setSetAmount(difficulty);
-let cards = generateCardsWithSets(setAmount, numberOfCards); 
-console.log("2,6");
-let cardsInPlay = cards;
+    // })
+    let target = document.getElementsByClassName('game-cell');
+    setAmount=setSetAmount(difficulty);
+    let cards = generateCardsWithSets(setAmount, numberOfCards); 
+    console.log("2,6");
+    let cardsInPlay = cards;
 
+    let setOfSets = new Set(new Set());
 
-let i = 0;
-
+    
+    let i = 0;
+    let setsArray = [1,2,3];
+    
 while (i < cardsInPlay.length) {
     
     const card = document.getElementById(i+1);
-    
     // card.setAttribute = cardsInPlay[i];
     detectCard(cardsInPlay[i],i,1,"game-cell","rgba(0,0,0,0)");
     const can = card.getElementsByTagName("canvas");
     // console.log(can.item(0));
     // card.onclick = () => cellClicked(can.item(0).getAttribute("color"));
-    
-    card.onclick = () => cellClicked(can.item(0),set,setAmount,found);
+   
+    card.addEventListener("click",() => cellClicked(can.item(0),set,setAmount,setOfSets)  ) ;
     i++;    
 }
 stopwatch= startStopWatch(difficulty);
@@ -175,16 +177,16 @@ function difficultyMode(difficulty){
     return numberOfCards;
 }
 
-function cellClicked(card,set,setAmount,found){
+function cellClicked(card,set,setAmount,setOfSets){
     setCard = reforgeCard(card);
     
     // console.log("the color of the reforged card "+setCard.color);
     
     // console.log("The inset is " + isInSet(set,setCard));
-    if (isInSet(set,setCard) == false && set.length < 3 ){
+    if (notInSet(set,setCard) == false && set.length < 3 ){
         set.push(setCard);
         // console.log("here")
-    } else if(isInSet(set,setCard)){
+    } else if(notInSet(set,setCard)){
         console.log("select another card")
     }
     
@@ -192,24 +194,55 @@ function cellClicked(card,set,setAmount,found){
     let setGrid = document.getElementById('set-grid');
     
     if (set.length == 3) {
+        let notInSet = false;
         // console.log("Checking cards");
         // console.log(checkIfSet(set[0],set[1],set[2]));
         // console.log("end check")
         if( checkIfSet(set[0],set[1],set[2]) ) {
-           
-            // add to set found section
-            for (let i = 0; i < set.length; i++) {
-                const setFound = document.createElement('div');
-                
-                setFound.className = 'set-cell';
-                setFound.style.gridTemplateRows = 'repeat(3, 1fr)';
-                setFound.setAttribute("id",i+1);
-                
-                setGrid.appendChild(setFound);
-                detectCard(set[i],0,.2,"set-cell","gray");
-                found++;
-                gameOverComplete(setAmount,found);
+            
+
+    if (!setOfSets.has(set)) {
+        setOfSets.add(set);
+        notInSet = true;
+     }
+            // console.log(setsAcquired===undefined);
+            // if(setsAcquired === undefined){
+            //     notInSet=true;
+            // }else {
+            //     console.log("the check");
+            //     notInSet = isinSet(setsAcquired[0],set);
+            //     console.log(isinSet);
+            // }
+                    
+            // console.log(notInSet);
+               
+               
+            
+            
+            if(notInSet ==false){
+                // setsAcquired[setsAcquired.length] = set
+                // add to set found section
+                for (let i = 0; i < set.length; i++) {
+                    const setFound = document.createElement('div');
+                    
+                    setFound.className = 'set-cell';
+                    setFound.style.gridTemplateRows = 'repeat(3, 1fr)';
+                    setFound.setAttribute("id",i+1);
+                    
+                    setGrid.appendChild(setFound);
+                    detectCard(set[i],0,.2,"set-cell","gray");
+                    found++;
+                    gameOverComplete(setAmount,found);
+                }
+            }else{
+                console.log("you already found this set");
             }
+            
+
+           
+                
+            
+           
             
             
             
@@ -222,8 +255,44 @@ function cellClicked(card,set,setAmount,found){
     }
     
 }
+// let a = [createRandomCard(),createRandomCard(),createRandomCard()];
+// b= [createRandomCard(),createRandomCard(),createRandomCard()];
+// let c=[];
+// console.log(isinSet(a,c));
+function isinSet(setFromArray,set){
+    let inSet =false;
+    
+        console.log(setFromArray)
+        if(setFromArray===undefined){
+            if(setFromArray.length >0){
+                {
+                    console.log(cardSetID(set));
+                    console.log(cardSetID(setFromArray));
+                    if(cardSetID(set) == cardSetID(setFromArray) ){
+                        inSet= true;
+                    }
+                }
+            }     
+        }
+        
+        
+    return  inSet;
+}
 
-function isInSet(set,card){
+function cardSetID(set){
+    
+    let setId ="";
+    setString =[]
+    for (let i =0; i<set.length;i++ ){
+        setString[i] = cardToString(set[i]);
+    }
+    setId=""+setString[0]+""+setString[1]+""+setString[2]
+    console.log("the set id is "+ setId);
+    return setId;
+}
+
+
+function notInSet(set,card){
     let inSet =false;
     // console.log("isInSet test");
     for(let i=0;i<set.length;i++){

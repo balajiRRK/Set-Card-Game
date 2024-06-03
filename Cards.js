@@ -112,41 +112,42 @@ function generateCardsWithSets(setsNum, cardCount)
   let setsCount = 0;
   let cardsDealt = [];
   let setOfSets = new Set(new Set());
-
+  cardsDealt = dealCardsWithoutDuplicates(cardCount);
   // keep iterating new cardsDealt arrays of card objects until setsCount is what we want it to be based off setsNum
-  while (setsCount != setsNum) {
-    cardsDealt = dealCardsWithoutDuplicates(cardCount);
-    setOfSets = new Set(new Set());
-    console.log("test");
+  // while (setsCount != setsNum) {
+  //   cardsDealt = dealCardsWithoutDuplicates(cardCount);
+  //   setOfSets = new Set(new Set());
+  //   console.log("new while-loop iteration");
+  //   console.log("setsCount: " + setsCount);
+  //   console.log("setsNum: " + setsNum);
 
-    // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck
-    for (let i = 0; i < cardCount-2; i++) {
-      for (let j = i+1; j < cardCount-1; j++) {
-        for (let k = j+1; k < cardCount; k++) {
+  //   // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck
+  //   for (let i = 0; i < cardCount-2; i++) {
+  //     for (let j = i+1; j < cardCount-1; j++) {
+  //       for (let k = j+1; k < cardCount; k++) {
 
-          let set = new Set([cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
-          // ensure we're not using identical cards (like card0, card0, card0 when i = 0, j = 0, k = 0)
-          if (!equals(cardsDealt[i], cardsDealt[j]) && !equals(cardsDealt[j], cardsDealt[k]) && !equals(cardsDealt[i], cardsDealt[k])) {
+  //         let set = new Set([cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
 
-            // ensure that the set is not already accounted for (prevents different order of same cards being counted as unique set)
-              if (!setOfSets.has(set) && checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k])) {
-                
-                setsCount++;
-                setOfSets.add(cardsDealt[i], cardsDealt[j], cardsDealt[k]);
-            }
-          }
-        } 
-      }
-    }
-    
+  //         // ensure we're not using any identical cards (like card0, card0, card0 when i = 0, j = 0, k = 0)
+  //         if (!equals(cardsDealt[i], cardsDealt[j]) && !equals(cardsDealt[j], cardsDealt[k]) && !equals(cardsDealt[i], cardsDealt[k])) {
 
-  }
+  //           // ensure that the set is not already accounted for (prevents different order of same cards being counted as unique set)
+  //             if (!setOfSets.has(set) && checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k])) {
+  //               setsCount++;
+  //               setOfSets.add(set);
+  //           }
+  //         }
+  //       } 
+  //     }
+  //   }
+
+  // }
 
   return cardsDealt;
 }
 
 function cardToString(card){
-  return card.number +card.color+card.shading+card.shape;
+  return " "+card.number+card.color+card.shading+card.shape;
 }
 /**
 * Function to check if the colors of the three cards form a valid set.
