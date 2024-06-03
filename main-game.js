@@ -203,7 +203,7 @@ function cellClicked(card,set,setAmount,setOfSets){
 
     if (!setOfSets.has(set)) {
         setOfSets.add(set);
-        notInSet = true;
+        notInSet = false;
      }
             // console.log(setsAcquired===undefined);
             // if(setsAcquired === undefined){
