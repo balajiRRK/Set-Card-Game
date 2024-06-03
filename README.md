@@ -6,7 +6,7 @@
 * Extra Functionalities
 * Troubleshooting
 * Contributors
-* Sources referenced
+* Sources Referenced
 
 ## Game Installation: 
 ***
@@ -24,13 +24,13 @@ Simply right-click on the "home.html" file from the repository and open in any b
 ## Game Instructions:
 ---
 
-##### How to Play Set:
+How to Play Set:
 
-###### Objective:
+Objective:
 
 Select three cards that form a set. You are given a random deck of cards with a set amount, and you need to find all the set combinations within it before the timer runs out. The deck will not change after a set has been found.
 
-###### Card Characteristics:
+Card Characteristics:
 
 Each card has four characteristics:
 
@@ -39,19 +39,19 @@ Each card has four characteristics:
 3. **Shape:** Squiggle, Diamond, or Oval
 4. **Fill:** Solid, Striped, or Open
 
-###### Forming a Set:
+Forming a Set:
 
 A set consists of three cards where each characteristic is either:
 
 - All the same across the three cards, or
 - All different across the three cards.
 
-###### Examples:
+Examples:
 
 - **Set:** All cards are purple, squiggles, and solid fill, but have different numbers (e.g., 1, 2, and 3).
 - **Not a Set:** All cards are diamonds with different colors and numbers, but two are striped, and one is open.
 
-###### Difficulty Levels:
+Difficulty Levels:
 
 - **Easy:** Find 1 set in 3 minutes
 - **Normal:** Find 2 sets in 2 minutes
@@ -63,21 +63,21 @@ Happy playing!
 
 ## Extra Functionalities:
 
-###### Different Game Modes:
+Different Game Modes:
 
 Our Set game includes three difficulty levels to challenge players of all skill levels:
 
  **Easy Mode:**
-    - Objective: Find 1 set
-    - Time Limit: 3 minutes
+- Objective: Find 1 set
+- Time Limit: 3 minutes
 **Normal Mode:**
-    - Objective: Find 2 sets
-    - Time Limit: 2 minutes
+- Objective: Find 2 sets
+- Time Limit: 2 minutes
 **Hard Mode:**
-    - Objective: Find 3 sets
-    - Time Limit: 1 minute
+- Objective: Find 3 sets
+- Time Limit: 1 minute
 
-###### Timer:
+Timer:
 
 Each game mode comes with a timer that starts as soon as the game begins. The timer is set according to the difficulty level chosen:
 
@@ -124,7 +124,7 @@ Balaji Radhakrishnan - created and contributed to the cards.js having came up wi
 Ryan Parand - created the shading and shape functions, added difficulty page, and checked for comments. 
 
 
-## Sources referenced
+## Sources Referenced
 ---
 
 Source used by the team to learn how to play set:
