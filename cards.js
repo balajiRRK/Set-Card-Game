@@ -115,8 +115,13 @@ function generateCardsWithSets(setsNum, cardCount)
 
   // keep iterating new cardsDealt arrays of card objects until setsCount is what we want it to be based off setsNum
   while (setsCount != setsNum) {
+
+    // reset counter values
+    setOfSets = new Set(new Set());
+    setsCount = 0;
+
+    // create new random deck of cards of cardCount amount
     cardsDealt = dealCardsWithoutDuplicates(cardCount);
-    console.log("test");
 
     // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck
     for (let i = 0; i < cardCount-2; i++) {
@@ -124,19 +129,20 @@ function generateCardsWithSets(setsNum, cardCount)
         for (let k = j+1; k < cardCount; k++) {
 
           let set = new Set([cardsDealt[i], cardsDealt[j], cardsDealt[k]]);
-          // ensure we're not using identical cards (like card0, card0, card0 when i = 0, j = 0, k = 0)
+
+          // ensure we're not using any identical cards (like card0, card0, card0 when i = 0, j = 0, k = 0)
           if (!equals(cardsDealt[i], cardsDealt[j]) && !equals(cardsDealt[j], cardsDealt[k]) && !equals(cardsDealt[i], cardsDealt[k])) {
 
             // ensure that the set is not already accounted for (prevents different order of same cards being counted as unique set)
               if (!setOfSets.has(set) && checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k])) {
                 setsCount++;
-                setOfSets.add(cardsDealt[i], cardsDealt[j], cardsDealt[k]);
-            }
+                setOfSets.add(set);
+              }
           }
         } 
       }
     }
-
+    console.log(setsCount);
   }
 
   return cardsDealt;
