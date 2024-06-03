@@ -2,8 +2,10 @@ let set = [];
 let click = 0;
 let stopwatch;
 const MINUTE = 60;
-// gneration of the cards
+let found =0;
+// generation of the cards
 let numberOfCards;
+let setAmount;
 // document.addEventListener('DOMContentLoaded', () => {
             
     // get difficulty from call to html page change
@@ -13,10 +15,10 @@ let numberOfCards;
     numberOfCards = difficultyMode(difficulty);
 // })
 let target = document.getElementsByClassName('game-cell');
-
-let cards = generateCardsWithSets(1, 6); 
-
-let cardsInPlay = cards.slice(0,6);
+setAmount=setSetAmount(difficulty);
+let cards = generateCardsWithSets(setAmount, numberOfCards); 
+console.log("2,6");
+let cardsInPlay = cards;
 
 
 let i = 0;
@@ -31,16 +33,41 @@ while (i < cardsInPlay.length) {
     // console.log(can.item(0));
     // card.onclick = () => cellClicked(can.item(0).getAttribute("color"));
     
-    card.onclick = () => cellClicked(can.item(0),set);
+    card.onclick = () => cellClicked(can.item(0),set,setAmount,found);
     i++;    
 }
 stopwatch= startStopWatch(difficulty);
 
 
-   
- 
+function setSetAmount(difficulty){
+    let setAmount=0;
+    switch(difficulty){
+        case "Easy":
+            setAmount= 1;
+        break;
+        case "Normal":
+            setAmount= 6;
+        break;
+        case "Hard":
+            setAmount= 12;
+        break;
+    
 
-function gameOver(stopwatch){
+    }
+    return setAmount;
+}
+ 
+function gameOverComplete(setAmount,found){
+    if(found == setAmount){
+        let timer = new Stopwatch("-",5);
+        console.log("Congratulations! Going to game over screen.");
+        setInterval(() =>{
+            gameOverTime(timer);
+        },1000);
+        
+    }
+}
+function gameOverTime(stopwatch){
     let timer = document.getElementById("timer")
     // console.log(stopwatch.time);
     if(stopwatch.time<=0){
@@ -90,7 +117,7 @@ function startStopWatch(difficulty) {
                 stopwatch = new Stopwatch('-',MINUTE *1 ); 
                 setInterval(() =>{
                     document.getElementById("timer").innerHTML= stopwatch.time;
-                    gameOver(stopwatch);
+                    gameOverTime(stopwatch);
                 },1000);
 
                 
@@ -99,14 +126,14 @@ function startStopWatch(difficulty) {
                 stopwatch = new Stopwatch('-',MINUTE *2 ); 
                 setInterval(() =>{
                     document.getElementById("timer").innerHTML= stopwatch.time;
-                    gameOver(stopwatch);
+                    gameOverTime(stopwatch);
                 },1000);
             break;
             case "Hard":
                 stopwatch = new Stopwatch('-',MINUTE *3 ); 
                 setInterval(() =>{
                     document.getElementById("timer").innerHTML= stopwatch.time;
-                    gameOver(stopwatch);
+                    gameOverTime(stopwatch);
                 },1000);
             break;
 
@@ -148,7 +175,7 @@ function difficultyMode(difficulty){
     return numberOfCards;
 }
 
-function cellClicked(card,set){
+function cellClicked(card,set,setAmount,found){
     setCard = reforgeCard(card);
     
     // console.log("the color of the reforged card "+setCard.color);
@@ -168,8 +195,8 @@ function cellClicked(card,set){
         // console.log("Checking cards");
         // console.log(checkIfSet(set[0],set[1],set[2]));
         // console.log("end check")
-        if( checkIfSet(set[0],set[1],set[2])) {
-            
+        if( checkIfSet(set[0],set[1],set[2]) ) {
+           
             // add to set found section
             for (let i = 0; i < set.length; i++) {
                 const setFound = document.createElement('div');
@@ -180,6 +207,8 @@ function cellClicked(card,set){
                 
                 setGrid.appendChild(setFound);
                 detectCard(set[i],0,.2,"set-cell","gray");
+                found++;
+                gameOverComplete(setAmount,found);
             }
             
             

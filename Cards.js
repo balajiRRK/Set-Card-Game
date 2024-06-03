@@ -116,6 +116,7 @@ function generateCardsWithSets(setsNum, cardCount)
   // keep iterating new cardsDealt arrays of card objects until setsCount is what we want it to be based off setsNum
   while (setsCount != setsNum) {
     cardsDealt = dealCardsWithoutDuplicates(cardCount);
+    setOfSets = new Set(new Set());
     console.log("test");
 
     // iterate through every combination of 3 cards to count how many Sets there are in the dealt deck
@@ -129,6 +130,7 @@ function generateCardsWithSets(setsNum, cardCount)
 
             // ensure that the set is not already accounted for (prevents different order of same cards being counted as unique set)
               if (!setOfSets.has(set) && checkIfSet(cardsDealt[i], cardsDealt[j], cardsDealt[k])) {
+                
                 setsCount++;
                 setOfSets.add(cardsDealt[i], cardsDealt[j], cardsDealt[k]);
             }
@@ -136,12 +138,16 @@ function generateCardsWithSets(setsNum, cardCount)
         } 
       }
     }
+    
 
   }
 
   return cardsDealt;
 }
 
+function cardToString(card){
+  return card.number +card.color+card.shading+card.shape;
+}
 /**
 * Function to check if the colors of the three cards form a valid set.
 * A valid set is when all colors are the same or all colors are different.
