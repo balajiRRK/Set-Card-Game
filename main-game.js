@@ -48,10 +48,10 @@ function setSetAmount(difficulty){
             setAmount= 1;
         break;
         case "Normal":
-            setAmount= 6;
+            setAmount= 2;
         break;
         case "Hard":
-            setAmount= 12;
+            setAmount= 4;
         break;
     
 
