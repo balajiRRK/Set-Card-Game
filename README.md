@@ -70,9 +70,11 @@ Our Set game includes three difficulty levels to challenge players of all skill 
  **Easy Mode:**
 - Objective: Find 1 set
 - Time Limit: 3 minutes
+
 **Normal Mode:**
 - Objective: Find 2 sets
 - Time Limit: 2 minutes
+
 **Hard Mode:**
 - Objective: Find 3 sets
 - Time Limit: 1 minute
